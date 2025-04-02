@@ -13,7 +13,12 @@ config_version=5
 config/name="Ludum Dare 57"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://builds/jam/html5.png"
+
+[autoload]
+
+Music="*res://scenes/global/music_manager.tscn"
+Sound="*res://scenes/global/sound_manager.tscn"
 
 [rendering]
 

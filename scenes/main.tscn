@@ -1,9 +1,84 @@
-[gd_scene load_steps=2 format=3 uid="uid://bb4u3ujfosw1t"]
+[gd_scene load_steps=3 format=3 uid="uid://bb4u3ujfosw1t"]
 
 [ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="1_1mr3q"]
+[ext_resource type="Script" path="res://scripts/ui/menu.gd" id="4_ui60o"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(589, 324)
 texture = ExtResource("1_1mr3q")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_ui60o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -368.0
+offset_top = -69.0
+offset_right = 368.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Sound" type="VBoxContainer" parent="CanvasLayer/Menu/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/HBoxContainer/Sound"]
+layout_mode = 2
+text = "Sound"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/HBoxContainer/Sound"]
+layout_mode = 2
+
+[node name="ToggleSound" type="Button" parent="CanvasLayer/Menu/HBoxContainer/Sound/HBoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+text = "On"
+
+[node name="SoundSlider" type="HSlider" parent="CanvasLayer/Menu/HBoxContainer/Sound/HBoxContainer"]
+custom_minimum_size = Vector2(320, 42)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="Music" type="VBoxContainer" parent="CanvasLayer/Menu/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/HBoxContainer/Music"]
+layout_mode = 2
+text = "Music"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/HBoxContainer/Music"]
+layout_mode = 2
+
+[node name="ToggleMusic" type="Button" parent="CanvasLayer/Menu/HBoxContainer/Music/HBoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+text = "On"
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/Menu/HBoxContainer/Music/HBoxContainer"]
+custom_minimum_size = Vector2(320, 42)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[connection signal="pressed" from="CanvasLayer/Menu/HBoxContainer/Sound/HBoxContainer/ToggleSound" to="CanvasLayer/Menu" method="_on_toggle_sound_pressed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/HBoxContainer/Sound/HBoxContainer/SoundSlider" to="CanvasLayer/Menu" method="_on_sound_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/Menu/HBoxContainer/Music/HBoxContainer/ToggleMusic" to="CanvasLayer/Menu" method="_on_toggle_music_pressed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/HBoxContainer/Music/HBoxContainer/MusicSlider" to="CanvasLayer/Menu" method="_on_music_slider_value_changed"]
