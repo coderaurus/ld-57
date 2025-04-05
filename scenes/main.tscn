@@ -1,18 +1,29 @@
-[gd_scene load_steps=6 format=4 uid="uid://bb4u3ujfosw1t"]
+[gd_scene load_steps=13 format=4 uid="uid://bb4u3ujfosw1t"]
 
+[ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="1_1mr3q"]
 [ext_resource type="TileSet" uid="uid://cmkjy2g0pmff4" path="res://tiles/ground.tres" id="1_nsgkl"]
 [ext_resource type="Script" path="res://scripts/dual_tilemap/TileMapDual.gd" id="1_s2ymc"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_utmhm"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="2_soc7n"]
 [ext_resource type="TileSet" uid="uid://h64gju6fs7gf" path="res://tiles/wall.tres" id="3_j1hnw"]
 [ext_resource type="Script" path="res://scripts/ui/menu.gd" id="4_ui60o"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStateMachine.gd" id="6_t12py"]
+[ext_resource type="Script" path="res://scripts/state/State.gd" id="7_47507"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStateIdle.gd" id="7_xw4p1"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStateMove.gd" id="8_761ka"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hyol8"]
+radius = 16.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_utmhm")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(1288, 864)
-limit_left = 0
-limit_top = 0
+limit_left = -32
+limit_top = -32
+script = ExtResource("2_soc7n")
+target = NodePath("../Level/Player")
 
 [node name="Level" type="Node2D" parent="."]
 
@@ -77,6 +88,42 @@ tile_map_data = PackedByteArray("AAD9//3/AAACAAEAAAD9//7/AAACAAEAAAD+//3/AAACAAE
 tile_set = ExtResource("3_j1hnw")
 script = ExtResource("1_s2ymc")
 world_tilemap = NodePath("..")
+
+[node name="Player" type="CharacterBody2D" parent="Level"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Player"]
+texture = ExtResource("1_1mr3q")
+region_enabled = true
+region_rect = Rect2(30, 48, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Player"]
+shape = SubResource("CircleShape2D_hyol8")
+
+[node name="StateMachine" type="Node2D" parent="Level/Player" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_t12py")
+is_debugging = true
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="Level/Player/StateMachine"]
+script = ExtResource("7_xw4p1")
+
+[node name="Move" type="Node" parent="Level/Player/StateMachine"]
+script = ExtResource("8_761ka")
+
+[node name="AimJump" type="Node" parent="Level/Player/StateMachine"]
+script = ExtResource("7_47507")
+
+[node name="Jump2" type="Node" parent="Level/Player/StateMachine"]
+script = ExtResource("7_47507")
+
+[node name="AimItem" type="Node" parent="Level/Player/StateMachine"]
+script = ExtResource("7_47507")
+
+[node name="PlaceItem" type="Node" parent="Level/Player/StateMachine"]
+script = ExtResource("7_47507")
+
+[node name="Hurt" type="Node" parent="Level/Player/StateMachine"]
+script = ExtResource("7_47507")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
