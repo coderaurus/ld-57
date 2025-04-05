@@ -68,10 +68,12 @@ func get_pickup() -> void:
 
 func hurt() -> void:
 	print("ouch")
-	global_position = (get_parent() as Level).get_spawn_point()
-	on_map = 0
+	$StateMachine.transition_to("hurt")
+	
 
 
 func _on_bravery_area_entered(area: Area2D) -> void:
 	if toy_acquired and area.get_parent() is Monster:
 		(area.get_parent() as Monster).flee(global_position)
+	elif toy_acquired and area is Horror:
+		(area as Horror).discover()

@@ -11,5 +11,5 @@ func _ready() -> void:
 	camera.limit_bottom = ground.get_used_rect().size.y * ground.tile_set.tile_size.y - 64
 
 func on_goal_reached() -> void:
-	print("Game won!")
+	print("Game won! (game paused)")
 	get_tree().paused = true

@@ -11,9 +11,9 @@
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateJump.gd" id="7_ycgaa"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateLand.gd" id="8_gyn28"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateAimItem.gd" id="9_cffiw"]
-[ext_resource type="Script" path="res://scripts/state/State.gd" id="9_g06x4"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStatePlaceItem.gd" id="10_xt0f7"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStatePickup.gd" id="12_67bp8"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStateHurt.gd" id="14_0from"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hyol8"]
 radius = 16.0
@@ -99,7 +99,7 @@ shape = SubResource("CircleShape2D_qqsol")
 debug_color = Color(0.830681, 0.3561, 0.443157, 0.42)
 
 [node name="Hurt" type="Node2D" parent="StateMachine"]
-script = ExtResource("9_g06x4")
+script = ExtResource("14_0from")
 
 [connection signal="area_entered" from="Bravery" to="." method="_on_bravery_area_entered"]
 [connection signal="body_entered" from="StateMachine/Pickup/Area" to="StateMachine/Pickup" method="_on_area_body_entered"]

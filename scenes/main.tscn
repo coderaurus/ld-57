@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bb4u3ujfosw1t"]
+[gd_scene load_steps=15 format=4 uid="uid://bb4u3ujfosw1t"]
 
 [ext_resource type="TileSet" uid="uid://cmkjy2g0pmff4" path="res://tiles/ground.tres" id="1_nsgkl"]
 [ext_resource type="Script" path="res://scripts/dual_tilemap/TileMapDual.gd" id="1_s2ymc"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/map.gd" id="4_ypgnk"]
 [ext_resource type="PackedScene" uid="uid://d4f4byvuv5qqh" path="res://scenes/jumpable.tscn" id="8_wyaih"]
 [ext_resource type="PackedScene" uid="uid://cqr1r73m7vx4g" path="res://scenes/monster_trail.tscn" id="9_hp4vy"]
+[ext_resource type="PackedScene" uid="uid://bv61qsfjq6emf" path="res://scenes/horror.tscn" id="9_yoaux"]
 
 [sub_resource type="Curve2D" id="Curve2D_hpy1i"]
 _data = {
@@ -35,6 +36,7 @@ script = ExtResource("1_utmhm")
 
 [node name="Level" type="Node2D" parent="."]
 process_mode = 1
+y_sort_enabled = true
 script = ExtResource("3_pbwqq")
 
 [node name="Camera2D" type="Camera2D" parent="Level"]
@@ -94,6 +96,15 @@ world_tilemap = NodePath("..")
 
 [node name="Jumpable" parent="Level/Maps/Map2/Objects" instance=ExtResource("8_wyaih")]
 
+[node name="Horror" parent="Level/Maps/Map2/Objects" instance=ExtResource("9_yoaux")]
+position = Vector2(288, 197)
+
+[node name="Horror2" parent="Level/Maps/Map2/Objects" instance=ExtResource("9_yoaux")]
+position = Vector2(1072, 208)
+
+[node name="Horror3" parent="Level/Maps/Map2/Objects" instance=ExtResource("9_yoaux")]
+position = Vector2(1267, 176)
+
 [node name="Trails" type="Node2D" parent="Level/Maps/Map2"]
 
 [node name="MonsterTrail" parent="Level/Maps/Map2/Trails" instance=ExtResource("9_hp4vy")]
@@ -126,6 +137,21 @@ script = ExtResource("1_s2ymc")
 world_tilemap = NodePath("..")
 
 [node name="Objects" type="Node2D" parent="Level/Maps/Map3"]
+
+[node name="Horror4" parent="Level/Maps/Map3/Objects" instance=ExtResource("9_yoaux")]
+position = Vector2(958, 456)
+
+[node name="Horror7" parent="Level/Maps/Map3/Objects" instance=ExtResource("9_yoaux")]
+position = Vector2(1029, 523)
+
+[node name="Horror8" parent="Level/Maps/Map3/Objects" instance=ExtResource("9_yoaux")]
+position = Vector2(999, 613)
+
+[node name="Horror5" parent="Level/Maps/Map3/Objects" instance=ExtResource("9_yoaux")]
+position = Vector2(642, 395)
+
+[node name="Horror6" parent="Level/Maps/Map3/Objects" instance=ExtResource("9_yoaux")]
+position = Vector2(498, 645)
 
 [node name="Trails" type="Node2D" parent="Level/Maps/Map3"]
 
