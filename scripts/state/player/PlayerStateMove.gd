@@ -3,7 +3,7 @@ class_name PlayerStateMove
 
 @export var speed := 200
 
-var player:CharacterBody2D
+var player:Player
 
 func enter():
 	if player == null:
@@ -17,10 +17,13 @@ func update(_delta: float):
 	var move_input_y: float = Input.get_axis("move_up", "move_down")
 	var move_input = Vector2(move_input_x, move_input_y)
 	
-	if move_input == Vector2.ZERO:
+	if Input.is_action_just_pressed("jump"):
+		transitioned.emit(self, "aimjump")
+	elif move_input == Vector2.ZERO:
 		transitioned.emit(self, "idle")
 	else:
 		var boost := 2 if Input.is_action_pressed("move_boost") else 1
+		player.facing = move_input
 		player.velocity = move_input * speed * boost
 		player.move_and_slide()
 
