@@ -102,8 +102,7 @@ func _ready() -> void:
 		print('Updating in-game is activated')
 	
 	if world_tilemap == null:
-		if self.owner.is_class('TileMapDual'):
-			world_tilemap = self.owner
+		world_tilemap = get_parent()
 	
 	update_tileset()
 
