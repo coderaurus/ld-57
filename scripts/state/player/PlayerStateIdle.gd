@@ -2,7 +2,7 @@ extends State
 class_name PlayerStateIdle
 
 
-func enter():
+func enter(parameters = []):
 	pass
 
 func exit():

@@ -23,7 +23,7 @@ func _physics_process(delta):
 	if current_state: 
 		current_state.physics_update(delta)
 
-func on_child_transition(state, new_state_name):
+func on_child_transition(state, new_state_name, parameters = []):
 	if is_debugging: 
 		print("%s wants to %s" % [state.name, new_state_name])
 	if state != current_state:
@@ -37,5 +37,5 @@ func on_child_transition(state, new_state_name):
 		current_state.exit()
 	if is_debugging: 
 		print("Entering %s" % new_state.name)
-	new_state.enter()
+	new_state.enter(parameters)
 	current_state = new_state

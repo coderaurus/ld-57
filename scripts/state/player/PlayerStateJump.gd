@@ -3,10 +3,10 @@ class_name PlayerStateJump
 
 var player: Player
 
-func enter():
+func enter(parameters = []):
 	if player == null: 
 		player = get_parent().get_parent()
-	player.jump(on_jumped)
+	player.jump(parameters, on_jumped)
 
 func exit():
 	pass

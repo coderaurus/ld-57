@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://4xkxuohjlx88"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_s1aar"]
+[ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="2_xxsi8"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStateMachine.gd" id="3_ed2r1"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStateIdle.gd" id="4_64it4"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStateMove.gd" id="5_ppec2"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStateAimJump.gd" id="6_yvljt"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStateJump.gd" id="7_ycgaa"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStateLand.gd" id="8_gyn28"]
+[ext_resource type="Script" path="res://scripts/state/State.gd" id="9_g06x4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hyol8"]
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_s1aar")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_xxsi8")
+region_enabled = true
+region_rect = Rect2(30, 48, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hyol8")
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_ed2r1")
+is_debugging = true
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_64it4")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("5_ppec2")
+
+[node name="AimJump" type="Node" parent="StateMachine"]
+script = ExtResource("6_yvljt")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("7_ycgaa")
+
+[node name="Land" type="Node" parent="StateMachine"]
+script = ExtResource("8_gyn28")
+
+[node name="AimItem" type="Node" parent="StateMachine"]
+script = ExtResource("9_g06x4")
+
+[node name="PlaceItem" type="Node" parent="StateMachine"]
+script = ExtResource("9_g06x4")
+
+[node name="Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("9_g06x4")

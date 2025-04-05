@@ -5,7 +5,7 @@ class_name PlayerStateMove
 
 var player:Player
 
-func enter():
+func enter(parameters = []):
 	if player == null:
 		player = get_parent().get_parent()
 
