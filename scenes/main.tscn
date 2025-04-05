@@ -9,20 +9,26 @@
 [ext_resource type="Script" path="res://scripts/ui/menu.gd" id="4_ui60o"]
 [ext_resource type="Script" path="res://scripts/map.gd" id="4_ypgnk"]
 [ext_resource type="PackedScene" uid="uid://d4f4byvuv5qqh" path="res://scenes/jumpable.tscn" id="8_wyaih"]
-[ext_resource type="PackedScene" uid="uid://4xkxuohjlx88" path="res://scenes/player.tscn" id="9_1a0w7"]
+
+[sub_resource type="Curve2D" id="Curve2D_080ud"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1744, 56, 0, 0, 0, 0, 1736, 1008, 0, 0, 0, 0, 48, 1000, 0, 0, 0, 0, 56, 56, 0, 0, 0, 0, 1736, 48)
+}
+point_count = 5
 
 [node name="Main" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_utmhm")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+[node name="Level" type="Node2D" parent="."]
+process_mode = 1
+script = ExtResource("3_pbwqq")
+
+[node name="Camera2D" type="Camera2D" parent="Level"]
 position = Vector2(1288, 864)
 limit_left = -32
 limit_top = -32
 script = ExtResource("2_soc7n")
-target = NodePath("../Level/Player")
-
-[node name="Level" type="Node2D" parent="."]
-script = ExtResource("3_pbwqq")
 
 [node name="Maps" type="Node2D" parent="Level"]
 
@@ -102,10 +108,15 @@ world_tilemap = NodePath("..")
 
 [node name="Objects" type="Node2D" parent="Level/Maps/Map3"]
 
-[node name="Player" parent="Level" instance=ExtResource("9_1a0w7")]
-position = Vector2(536, 72)
+[node name="Spawn" type="Path2D" parent="Level"]
+curve = SubResource("Curve2D_080ud")
+
+[node name="Point" type="PathFollow2D" parent="Level/Spawn"]
+position = Vector2(1744, 56)
+rotation = 1.5792
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="Menu" type="Control" parent="CanvasLayer"]
 layout_mode = 3

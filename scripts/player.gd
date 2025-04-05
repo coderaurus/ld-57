@@ -12,6 +12,7 @@ var toy_acquired := false
 signal is_aiming_jump
 signal is_aiming_item
 signal is_placing_item
+signal toy_get
 
 func _process(delta: float) -> void:
 	pass
@@ -56,6 +57,7 @@ func place_item(placement: Vector2, direction: Vector2) -> void:
 
 func get_toy() -> void:
 	toy_acquired = true
+	toy_get.emit()
 	$Sprite2D/ToySprite.show()
 	$Bravery.monitoring = true
 

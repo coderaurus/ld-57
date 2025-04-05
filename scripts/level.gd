@@ -1,16 +1,18 @@
 extends Node2D
 class_name Level
 
-@onready var player := $Player
+@onready var player : Player
 @onready var maps: Node2D = $Maps
 
+const PLAYER = preload("res://scenes/player.tscn")
 const BUCKET = preload("res://scenes/bucket.tscn")
 const TOY = preload("res://scenes/toy.tscn")
+const GOAL = preload("res://scenes/goal.tscn")
+
+var goal: Goal
 
 func _ready() -> void:
-	player.is_aiming_jump.connect(_on_player_aiming_jump)
-	player.is_aiming_item.connect(_on_player_aiming_item)
-	player.is_placing_item.connect(_on_player_placing_item)
+	_spawn_player()
 	
 	var map_count = maps.get_child_count()
 	for i in map_count:
@@ -104,3 +106,29 @@ func _place_toy() -> void:
 	var toy = TOY.instantiate()
 	last_map.objects.add_child(toy)
 	toy.global_position = spawn_point * 64
+
+func _spawn_player() -> void:
+	player = PLAYER.instantiate()
+	add_child(player)
+	player.global_position = _get_spawn_point()
+	
+	player.is_aiming_jump.connect(_on_player_aiming_jump)
+	player.is_aiming_item.connect(_on_player_aiming_item)
+	player.is_placing_item.connect(_on_player_placing_item)
+	player.toy_get.connect(_on_player_toy_get)
+	
+	$Camera2D.target = player
+
+func _spawn_goal() -> void:
+	goal = GOAL.instantiate()
+	add_child(goal)
+	goal.global_position = _get_spawn_point()
+	goal.goal_reached.connect(get_parent().on_goal_reached)
+	
+
+func _get_spawn_point() -> Vector2:
+	$Spawn/Point.progress_ratio = randf()
+	return $Spawn/Point.global_position
+
+func _on_player_toy_get() -> void:
+	call_deferred("_spawn_goal")
