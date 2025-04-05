@@ -59,7 +59,19 @@ func get_toy() -> void:
 	toy_acquired = true
 	toy_get.emit()
 	$Sprite2D/ToySprite.show()
+	$Bravery.set_deferred("monitorable" , true)
 	$Bravery.monitoring = true
 
 func get_pickup() -> void:
 	buckets.add_bucket()
+
+
+func hurt() -> void:
+	print("ouch")
+	global_position = (get_parent() as Level).get_spawn_point()
+	on_map = 0
+
+
+func _on_bravery_area_entered(area: Area2D) -> void:
+	if toy_acquired and area.get_parent() is Monster:
+		(area.get_parent() as Monster).flee(global_position)

@@ -101,4 +101,5 @@ debug_color = Color(0.830681, 0.3561, 0.443157, 0.42)
 [node name="Hurt" type="Node2D" parent="StateMachine"]
 script = ExtResource("9_g06x4")
 
+[connection signal="area_entered" from="Bravery" to="." method="_on_bravery_area_entered"]
 [connection signal="body_entered" from="StateMachine/Pickup/Area" to="StateMachine/Pickup" method="_on_area_body_entered"]

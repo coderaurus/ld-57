@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqr1r73m7vx4g"]
+
+[ext_resource type="Script" path="res://scripts/monster_trail.gd" id="1_efm4r"]
+
+[sub_resource type="Curve2D" id="Curve2D_iflps"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 200, 802, 0, 0, 0, 0, 304, 896, 0, 0, 0, 0, 720, 872, 0, 0, 0, 0, 920, 928, 0, 0, 0, 0, 1240, 928, 0, 0, 0, 0, 1336, 880, 0, 0, 0, 0, 1520, 880)
+}
+point_count = 7
+
+[node name="MonsterTrail" type="Path2D"]
+curve = SubResource("Curve2D_iflps")
+script = ExtResource("1_efm4r")

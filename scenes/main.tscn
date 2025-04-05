@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bb4u3ujfosw1t"]
+[gd_scene load_steps=14 format=4 uid="uid://bb4u3ujfosw1t"]
 
 [ext_resource type="TileSet" uid="uid://cmkjy2g0pmff4" path="res://tiles/ground.tres" id="1_nsgkl"]
 [ext_resource type="Script" path="res://scripts/dual_tilemap/TileMapDual.gd" id="1_s2ymc"]
@@ -9,6 +9,19 @@
 [ext_resource type="Script" path="res://scripts/ui/menu.gd" id="4_ui60o"]
 [ext_resource type="Script" path="res://scripts/map.gd" id="4_ypgnk"]
 [ext_resource type="PackedScene" uid="uid://d4f4byvuv5qqh" path="res://scenes/jumpable.tscn" id="8_wyaih"]
+[ext_resource type="PackedScene" uid="uid://cqr1r73m7vx4g" path="res://scenes/monster_trail.tscn" id="9_hp4vy"]
+
+[sub_resource type="Curve2D" id="Curve2D_hpy1i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 255, 952, 0, 0, 0, 0, 367, 1100, 0, 0, 0, 0, 614, 1180, 0, 0, 0, 0, 918, 1178, 0, 0, 0, 0, 1242, 1088, 0, 0, 0, 0, 1311, 924, 0, 0, 0, 0, 1190, 786, 0, 0, 0, 0, 897, 726, 0, 0, 0, 0, 538, 731, 0, 0, 0, 0, 321, 852, 0, 0, 0, 0, 250, 947)
+}
+point_count = 11
+
+[sub_resource type="Curve2D" id="Curve2D_xqmru"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 840, 690, 0, 0, 0, 0, 989, 754, 0, 0, 0, 0, 1028, 835, 0, 0, 0, 0, 1016, 928, 0, 0, 0, 0, 861, 1002, 0, 0, 0, 0, 661, 952, 0, 0, 0, 0, 652, 790, 0, 0, 0, 0, 820, 685)
+}
+point_count = 8
 
 [sub_resource type="Curve2D" id="Curve2D_080ud"]
 _data = {
@@ -48,6 +61,8 @@ world_tilemap = NodePath("..")
 
 [node name="Objects" type="Node2D" parent="Level/Maps/Map"]
 
+[node name="Trails" type="Node2D" parent="Level/Maps/Map"]
+
 [node name="Map2" type="Node2D" parent="Level/Maps"]
 modulate = Color(0.578596, 0.674881, 0.991967, 1)
 z_index = -1
@@ -79,6 +94,10 @@ world_tilemap = NodePath("..")
 
 [node name="Jumpable" parent="Level/Maps/Map2/Objects" instance=ExtResource("8_wyaih")]
 
+[node name="Trails" type="Node2D" parent="Level/Maps/Map2"]
+
+[node name="MonsterTrail" parent="Level/Maps/Map2/Trails" instance=ExtResource("9_hp4vy")]
+
 [node name="Map3" type="Node2D" parent="Level/Maps"]
 modulate = Color(0.383911, 0.496783, 0.982156, 1)
 z_index = -2
@@ -107,6 +126,17 @@ script = ExtResource("1_s2ymc")
 world_tilemap = NodePath("..")
 
 [node name="Objects" type="Node2D" parent="Level/Maps/Map3"]
+
+[node name="Trails" type="Node2D" parent="Level/Maps/Map3"]
+
+[node name="MonsterTrail" parent="Level/Maps/Map3/Trails" instance=ExtResource("9_hp4vy")]
+position = Vector2(59, -409)
+curve = SubResource("Curve2D_hpy1i")
+loops = true
+
+[node name="MonsterTrail2" parent="Level/Maps/Map3/Trails" instance=ExtResource("9_hp4vy")]
+position = Vector2(97, -316)
+curve = SubResource("Curve2D_xqmru")
 
 [node name="Spawn" type="Path2D" parent="Level"]
 curve = SubResource("Curve2D_080ud")

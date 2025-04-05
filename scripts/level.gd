@@ -110,7 +110,7 @@ func _place_toy() -> void:
 func _spawn_player() -> void:
 	player = PLAYER.instantiate()
 	add_child(player)
-	player.global_position = _get_spawn_point()
+	player.global_position = get_spawn_point()
 	
 	player.is_aiming_jump.connect(_on_player_aiming_jump)
 	player.is_aiming_item.connect(_on_player_aiming_item)
@@ -122,11 +122,11 @@ func _spawn_player() -> void:
 func _spawn_goal() -> void:
 	goal = GOAL.instantiate()
 	add_child(goal)
-	goal.global_position = _get_spawn_point()
+	goal.global_position = get_spawn_point()
 	goal.goal_reached.connect(get_parent().on_goal_reached)
 	
 
-func _get_spawn_point() -> Vector2:
+func get_spawn_point() -> Vector2:
 	$Spawn/Point.progress_ratio = randf()
 	return $Spawn/Point.global_position
 

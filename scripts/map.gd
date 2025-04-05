@@ -1,6 +1,8 @@
 extends Node2D
 class_name Map
 
+const MONSTER = preload("res://scenes/monster.tscn")
+
 var map_above: Map
 var map_below: Map
 
@@ -8,13 +10,15 @@ var ground: TileMapLayer
 var ground_dual: TileMapDual
 var wall: TileMapLayer
 var objects: Node2D
+var trails: Node2D
 
 func _ready() -> void:
 	ground = get_node_or_null("Ground")
 	ground_dual = ground.get_child(0)
 	wall = get_node_or_null("Wall")
 	objects = get_node_or_null("Objects")
-	
+	trails = get_node_or_null("Trails")
+	_fill_trails()
 
 func is_position_available(pos: Vector2, facing: Vector2i) -> Vector2:
 	var pos_coord = ground.local_to_map(to_local(pos))+facing
@@ -97,3 +101,11 @@ func initialize_objects() -> void:
 func get_landing_tile(landing_pos: Vector2) -> Vector2:
 	var coord = ground_dual.local_to_map(to_local(landing_pos))
 	return ground_dual.map_to_local(to_global(coord))
+
+func _fill_trails() -> void:
+	for trail: Path2D in trails.get_children():
+		if trail.get_child_count() == 0:
+			var m = MONSTER.instantiate()
+			trail.add_child(m)
+			m.progress_ratio = randf()
+		

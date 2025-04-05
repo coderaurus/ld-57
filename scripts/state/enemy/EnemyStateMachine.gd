@@ -1,12 +1,11 @@
-extends Node2D
-class_name StateMachine
+extends StateMachine
+class_name EnemyStateMachine
 
-@export var initial_state: State
-
-var states: Dictionary = {}
-var current_state: State
+var monster:Monster
 
 func _ready():
+	monster = get_parent().get_parent()
+	
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
@@ -35,9 +34,5 @@ func on_child_transition(state, new_state_name, parameters):
 	if current_state:
 		current_state.exit()
 	
-	new_state.enter()
+	new_state.enter(parameters)
 	current_state = new_state
-
-
-func transition_to(state_name: String, parameters = []) -> void:
-	current_state.transitioned.emit(current_state, state_name, parameters)
