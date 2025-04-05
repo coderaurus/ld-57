@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=4 uid="uid://bb4u3ujfosw1t"]
+[gd_scene load_steps=11 format=4 uid="uid://bb4u3ujfosw1t"]
 
-[ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="1_1mr3q"]
 [ext_resource type="TileSet" uid="uid://cmkjy2g0pmff4" path="res://tiles/ground.tres" id="1_nsgkl"]
 [ext_resource type="Script" path="res://scripts/dual_tilemap/TileMapDual.gd" id="1_s2ymc"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_utmhm"]
@@ -9,10 +8,8 @@
 [ext_resource type="Script" path="res://scripts/level.gd" id="3_pbwqq"]
 [ext_resource type="Script" path="res://scripts/ui/menu.gd" id="4_ui60o"]
 [ext_resource type="Script" path="res://scripts/map.gd" id="4_ypgnk"]
-[ext_resource type="Script" path="res://scripts/jumpable.gd" id="8_ibfka"]
+[ext_resource type="PackedScene" uid="uid://d4f4byvuv5qqh" path="res://scenes/jumpable.tscn" id="8_wyaih"]
 [ext_resource type="PackedScene" uid="uid://4xkxuohjlx88" path="res://scenes/player.tscn" id="9_1a0w7"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5yt7b"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_utmhm")
@@ -74,27 +71,7 @@ world_tilemap = NodePath("..")
 
 [node name="Objects" type="Node2D" parent="Level/Maps/Map2"]
 
-[node name="Jumpable" type="StaticBody2D" parent="Level/Maps/Map2/Objects"]
-position = Vector2(832, 184)
-collision_mask = 0
-script = ExtResource("8_ibfka")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/Maps/Map2/Objects/Jumpable"]
-self_modulate = Color(0, 0.658824, 0.207843, 1)
-position = Vector2(0, -8)
-texture = ExtResource("1_1mr3q")
-region_enabled = true
-region_rect = Rect2(30, 48, 32, 32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Maps/Map2/Objects/Jumpable"]
-shape = SubResource("CircleShape2D_5yt7b")
-
-[node name="JumpPoints" type="Line2D" parent="Level/Maps/Map2/Objects/Jumpable"]
-z_index = 100
-z_as_relative = false
-points = PackedVector2Array(0, -16, 8, -112)
-width = 2.0
-default_color = Color(0.129492, 0.365382, 1, 1)
+[node name="Jumpable" parent="Level/Maps/Map2/Objects" instance=ExtResource("8_wyaih")]
 
 [node name="Map3" type="Node2D" parent="Level/Maps"]
 modulate = Color(0.383911, 0.496783, 0.982156, 1)
@@ -126,7 +103,7 @@ world_tilemap = NodePath("..")
 [node name="Objects" type="Node2D" parent="Level/Maps/Map3"]
 
 [node name="Player" parent="Level" instance=ExtResource("9_1a0w7")]
-position = Vector2(192, 928)
+position = Vector2(536, 72)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

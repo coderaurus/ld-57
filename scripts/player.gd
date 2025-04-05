@@ -7,6 +7,8 @@ var is_ascending = false
 var landing_position: Vector2
 
 signal is_aiming_jump
+signal is_aiming_item
+signal is_placing_item
 
 func _process(delta: float) -> void:
 	pass
@@ -40,3 +42,10 @@ func land(callback: Callable) -> void:
 		tween.tween_property(self, "global_position:x", landing_position.x, land_time).set_trans(Tween.TRANS_CIRC)
 		tween.parallel().tween_property(self, "global_position:y", landing_position.y + landing_distance, land_time).set_trans(Tween.TRANS_CIRC)
 		tween.tween_callback(callback)
+
+
+func aim_item(callback: Callable) -> void:
+	is_aiming_item.emit(callback)
+
+func place_item(placement: Vector2, direction: Vector2) -> void:
+	is_placing_item.emit(placement, direction)

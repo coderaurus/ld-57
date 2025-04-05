@@ -17,6 +17,8 @@ func update(_delta: float):
 	
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "aimjump")
+	elif Input.is_action_just_pressed("use_item"):
+		transitioned.emit(self, "aimitem")
 
 func physics_update(_delta: float):
 	pass

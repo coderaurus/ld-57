@@ -19,12 +19,14 @@ func update(_delta: float):
 	
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "aimjump")
+	elif Input.is_action_just_pressed("use_item"):
+		transitioned.emit(self, "aimitem")
 	elif move_input == Vector2.ZERO:
 		transitioned.emit(self, "idle")
 	else:
 		var boost := 2 if Input.is_action_pressed("move_boost") else 1
 		player.facing = move_input
-		player.velocity = move_input * speed * boost
+		player.velocity = move_input.normalized() * speed * boost
 		player.move_and_slide()
 
 func physics_update(_delta: float):

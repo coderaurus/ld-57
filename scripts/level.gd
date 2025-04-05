@@ -4,9 +4,28 @@ class_name Level
 @onready var player := $Player
 @onready var maps: Node2D = $Maps
 
+const BUCKET = preload("res://scenes/bucket.tscn")
 
 func _ready() -> void:
 	player.is_aiming_jump.connect(_on_player_aiming_jump)
+	player.is_aiming_item.connect(_on_player_aiming_item)
+	player.is_placing_item.connect(_on_player_placing_item)
+	
+	var map_count = maps.get_child_count()
+	for i in map_count:
+		# Note: there is always more than one map layer
+		if i == 0: 
+			(maps.get_child(i) as Map).map_below = maps.get_child(i+1)
+		elif i == map_count - 1:
+			(maps.get_child(i) as Map).map_above = maps.get_child(i-1)
+		else:
+			(maps.get_child(i) as Map).map_above = maps.get_child(i-1)
+			(maps.get_child(i) as Map).map_below = maps.get_child(i+1)
+	_initialize()
+
+func _initialize() -> void:
+	for m:Map in maps.get_children():
+		m.initialize_objects()
 
 func _on_player_aiming_jump(direction:Vector2, callback: Callable) -> void:
 	var map: Map = maps.get_child(player.on_map)
@@ -14,6 +33,10 @@ func _on_player_aiming_jump(direction:Vector2, callback: Callable) -> void:
 		callback.call(false, [] as Array[Vector2])
 	
 	var landing_position = map.is_position_empty(player.global_position, direction)
+	if map.map_below != null:
+		landing_position = map.map_below.is_position_fillable(player.global_position, direction)
+	else:
+		landing_position = Vector2(-1, -1)
 	# Empty position => get coordinate
 	if landing_position != Vector2(-1, -1):
 		print("Normal jump")
@@ -31,3 +54,36 @@ func _on_player_aiming_jump(direction:Vector2, callback: Callable) -> void:
 		else:
 			print("No jump")
 			callback.call(false, [] as Array[Vector2])
+
+
+func _on_player_aiming_item(callback: Callable) -> void:
+	var map: Map = maps.get_child(player.on_map)
+	if map.map_above == null:
+		callback.call(false, Vector2(-1, -1), Vector2(-1, -1))
+		return
+		
+	var aimed_position = map.is_position_available(player.global_position, player.facing)
+	if aimed_position != Vector2(-1, -1):
+		var directions = [
+			Vector2.UP,
+			Vector2.RIGHT,
+			Vector2.DOWN,
+			Vector2.LEFT
+		]
+		
+		for d in directions:
+			var item_direction = map.map_above.is_position_available(aimed_position, d)
+			if item_direction != Vector2(-1,-1):
+				print("Item %s can can be directed to %s " % [aimed_position, item_direction])
+				print("Distance: %s" % aimed_position.distance_to(item_direction))
+				callback.call(true, aimed_position, d)
+				return
+		callback.call(false, Vector2(-1, -1), Vector2(-1, -1))
+		return
+	callback.call(false, Vector2(-1, -1), Vector2(-1, -1))
+
+func _on_player_placing_item(placement:Vector2, direction:Vector2) -> void:
+	var bucket = BUCKET.instantiate()
+	(maps.get_child(player.on_map) as Map).objects.add_child(bucket)
+	bucket.global_position = placement
+	bucket.set_jump_direction(direction)
