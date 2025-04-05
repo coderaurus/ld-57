@@ -20,7 +20,10 @@ func update(_delta: float):
 	if Input.is_action_just_pressed("jump"):
 		transitioned.emit(self, "aimjump")
 	elif Input.is_action_just_pressed("use_item"):
-		transitioned.emit(self, "aimitem")
+		if get_parent().can_pickup():
+			transitioned.emit(self, "pickup")
+		else:
+			transitioned.emit(self, "aimitem")
 	elif move_input == Vector2.ZERO:
 		transitioned.emit(self, "idle")
 	else:

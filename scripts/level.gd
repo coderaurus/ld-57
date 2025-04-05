@@ -5,6 +5,7 @@ class_name Level
 @onready var maps: Node2D = $Maps
 
 const BUCKET = preload("res://scenes/bucket.tscn")
+const TOY = preload("res://scenes/toy.tscn")
 
 func _ready() -> void:
 	player.is_aiming_jump.connect(_on_player_aiming_jump)
@@ -26,6 +27,8 @@ func _ready() -> void:
 func _initialize() -> void:
 	for m:Map in maps.get_children():
 		m.initialize_objects()
+	
+	_place_toy()
 
 func _on_player_aiming_jump(direction:Vector2, callback: Callable) -> void:
 	var map: Map = maps.get_child(player.on_map)
@@ -87,3 +90,17 @@ func _on_player_placing_item(placement:Vector2, direction:Vector2) -> void:
 	(maps.get_child(player.on_map) as Map).objects.add_child(bucket)
 	bucket.global_position = placement
 	bucket.set_jump_direction(direction)
+
+func _place_toy() -> void: 
+	var last_map: Map = maps.get_child(maps.get_child_count()-1)
+	var ground_rect = last_map.ground.get_used_rect()
+	var spawn_point = ground_rect.size / 2
+	var spawn_position = ground_rect.position
+	spawn_point.x = randf_range(spawn_position.x + spawn_point.x - 2, spawn_position.x + spawn_point.x + 2)
+	spawn_point.x = clampi(spawn_position.x + spawn_point.x, spawn_position.x + 2, spawn_position.x + ground_rect.size.x - 2)
+	spawn_point.y = randf_range(spawn_position.y + spawn_point.y - 2, spawn_position.y + spawn_point.y + 2)
+	spawn_point.y = clampi(spawn_position.y + spawn_point.y,spawn_position.y +  2, spawn_position.y + ground_rect.size.y - 2)
+	
+	var toy = TOY.instantiate()
+	last_map.objects.add_child(toy)
+	toy.global_position = spawn_point * 64

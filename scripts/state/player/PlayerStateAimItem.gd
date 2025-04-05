@@ -7,7 +7,10 @@ func enter(parameters = []):
 	if player == null: 
 		player = get_parent().get_parent()
 	await get_tree().process_frame
-	player.aim_item(on_aim_result)
+	if player.buckets.has_buckets():
+		player.aim_item(on_aim_result)
+	else:
+		transitioned.emit(self, "idle")
 
 func exit():
 	pass

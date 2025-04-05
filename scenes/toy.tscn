@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0y37yjwr7hgw"]
+
+[ext_resource type="Script" path="res://scripts/toy.gd" id="1_a166q"]
+[ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="1_jqvid"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j2yhr"]
+
+[node name="Toy" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_a166q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jqvid")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j2yhr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

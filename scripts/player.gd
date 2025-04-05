@@ -1,10 +1,13 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var buckets: Buckets = $Sprite2D/Buckets
+
 var facing: Vector2
 var on_map: int = 0
-var is_ascending = false
+var is_ascending := false
 var landing_position: Vector2
+var toy_acquired := false
 
 signal is_aiming_jump
 signal is_aiming_item
@@ -48,4 +51,13 @@ func aim_item(callback: Callable) -> void:
 	is_aiming_item.emit(callback)
 
 func place_item(placement: Vector2, direction: Vector2) -> void:
+	buckets.remove_bucket()
 	is_placing_item.emit(placement, direction)
+
+func get_toy() -> void:
+	toy_acquired = true
+	$Sprite2D/ToySprite.show()
+	$Bravery.monitoring = true
+
+func get_pickup() -> void:
+	buckets.add_bucket()

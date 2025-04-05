@@ -39,3 +39,6 @@ func on_child_transition(state, new_state_name, parameters = []):
 		print("Entering %s" % new_state.name)
 	new_state.enter(parameters)
 	current_state = new_state
+
+func can_pickup() -> bool:
+	return (get_node("Pickup") as PlayerStatePickup).can_pickup()

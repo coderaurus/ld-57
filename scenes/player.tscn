@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://4xkxuohjlx88"]
+[gd_scene load_steps=18 format=3 uid="uid://4xkxuohjlx88"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s1aar"]
 [ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="2_xxsi8"]
+[ext_resource type="Script" path="res://scripts/buckets.gd" id="3_cjl5m"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateMachine.gd" id="3_ed2r1"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateIdle.gd" id="4_64it4"]
+[ext_resource type="PackedScene" uid="uid://dkc6be5ls11tp" path="res://scenes/bucket_sprite.tscn" id="4_fe43m"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateMove.gd" id="5_ppec2"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateAimJump.gd" id="6_yvljt"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateJump.gd" id="7_ycgaa"]
@@ -11,13 +13,20 @@
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateAimItem.gd" id="9_cffiw"]
 [ext_resource type="Script" path="res://scripts/state/State.gd" id="9_g06x4"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStatePlaceItem.gd" id="10_xt0f7"]
+[ext_resource type="Script" path="res://scripts/state/player/PlayerStatePickup.gd" id="12_67bp8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hyol8"]
 radius = 16.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fwera"]
+radius = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqsol"]
+radius = 40.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 13
 script = ExtResource("1_s1aar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -26,34 +35,70 @@ texture = ExtResource("2_xxsi8")
 region_enabled = true
 region_rect = Rect2(30, 48, 32, 32)
 
+[node name="Buckets" type="Node2D" parent="Sprite2D"]
+position = Vector2(-8, -16)
+script = ExtResource("3_cjl5m")
+
+[node name="BucketSprite" parent="Sprite2D/Buckets" instance=ExtResource("4_fe43m")]
+
+[node name="ToySprite" type="Sprite2D" parent="Sprite2D"]
+visible = false
+self_modulate = Color(1, 1, 0.384314, 1)
+position = Vector2(8, 8)
+rotation = 0.785398
+texture = ExtResource("2_xxsi8")
+region_enabled = true
+region_rect = Rect2(30, 48, 32, 32)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hyol8")
 
+[node name="Bravery" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bravery"]
+shape = SubResource("CircleShape2D_fwera")
+
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_ed2r1")
-is_debugging = true
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node2D" parent="StateMachine"]
 script = ExtResource("4_64it4")
 
-[node name="Move" type="Node" parent="StateMachine"]
+[node name="Move" type="Node2D" parent="StateMachine"]
 script = ExtResource("5_ppec2")
 
-[node name="AimJump" type="Node" parent="StateMachine"]
+[node name="AimJump" type="Node2D" parent="StateMachine"]
 script = ExtResource("6_yvljt")
 
-[node name="Jump" type="Node" parent="StateMachine"]
+[node name="Jump" type="Node2D" parent="StateMachine"]
 script = ExtResource("7_ycgaa")
 
-[node name="Land" type="Node" parent="StateMachine"]
+[node name="Land" type="Node2D" parent="StateMachine"]
 script = ExtResource("8_gyn28")
 
-[node name="AimItem" type="Node" parent="StateMachine"]
+[node name="AimItem" type="Node2D" parent="StateMachine"]
 script = ExtResource("9_cffiw")
 
-[node name="PlaceItem" type="Node" parent="StateMachine"]
+[node name="PlaceItem" type="Node2D" parent="StateMachine"]
 script = ExtResource("10_xt0f7")
 
-[node name="Hurt" type="Node" parent="StateMachine"]
+[node name="Pickup" type="Node2D" parent="StateMachine"]
+script = ExtResource("12_67bp8")
+
+[node name="Area" type="Area2D" parent="StateMachine/Pickup"]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/Pickup/Area"]
+shape = SubResource("CircleShape2D_qqsol")
+debug_color = Color(0.830681, 0.3561, 0.443157, 0.42)
+
+[node name="Hurt" type="Node2D" parent="StateMachine"]
 script = ExtResource("9_g06x4")
+
+[connection signal="body_entered" from="StateMachine/Pickup/Area" to="StateMachine/Pickup" method="_on_area_body_entered"]
