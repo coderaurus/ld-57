@@ -33,7 +33,9 @@ func jump(jumps: Array[Vector2], callback: Callable) -> void:
 			#j.x /= 2 if facing.x != 0 else 1
 			print("J ", j)
 		tween.tween_property(self, "global_position:x", j.x, jump_time).set_trans(Tween.TRANS_CIRC)
-		tween.parallel().tween_property(self, "global_position:y", j.y, jump_time).set_trans(Tween.TRANS_CIRC)
+		tween.parallel().tween_property(self, "global_position:y", j.y, jump_time)\
+		.set_trans(Tween.TRANS_BACK if facing.y == 0 else Tween.TRANS_CIRC)\
+		.set_ease(Tween.EASE_OUT if facing.y == 0 else Tween.EASE_IN_OUT)
 	
 	tween.tween_callback(callback)
 
@@ -45,7 +47,7 @@ func land(callback: Callable) -> void:
 		var tween = get_tree().create_tween()
 		var landing_distance = 40 if facing != Vector2.UP else 4
 		tween.tween_property(self, "global_position:x", landing_position.x, land_time).set_trans(Tween.TRANS_CIRC)
-		tween.parallel().tween_property(self, "global_position:y", landing_position.y + landing_distance, land_time).set_trans(Tween.TRANS_CIRC)
+		tween.parallel().tween_property(self, "global_position:y", landing_position.y + landing_distance, land_time).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
 		tween.tween_callback(callback)
 
 
