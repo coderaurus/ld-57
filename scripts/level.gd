@@ -35,8 +35,21 @@ func _ready() -> void:
 func _initialize() -> void:
 	for m:Map in maps.get_children():
 		m.initialize_objects()
-	
 	_place_toy()
+	
+	# adjust visibility
+	var idx = 0
+	for m:Map in maps.get_children():
+		match (idx):
+			0:
+				m.show_me(1.0, true)
+			1:
+				m.show_me(0.5, true)
+			2:
+				m.show_me(0.2, true)
+			_:
+				m.hide_me(0.0, true)
+		idx += 1
 
 func _on_player_aiming_jump(direction:Vector2, callback: Callable) -> void:
 	var map: Map = maps.get_child(player.on_map)
@@ -53,7 +66,7 @@ func _on_player_aiming_jump(direction:Vector2, callback: Callable) -> void:
 		print("Normal jump")
 		player.is_ascending = false
 		callback.call(true, [landing_position] as Array[Vector2])
-		player.on_map += 1
+		player.set_to_map_layer(player.on_map + 1)
 	else:
 		# Search for jumpable objects to get up
 		var jumpable_path: Array[Vector2] = map.has_jumpable_object_at(player.global_position, direction)
@@ -61,7 +74,7 @@ func _on_player_aiming_jump(direction:Vector2, callback: Callable) -> void:
 			print("Jumpable: ", jumpable_path)
 			player.is_ascending = true
 			callback.call(true, jumpable_path)
-			player.on_map -= 1
+			player.set_to_map_layer(player.on_map - 1)
 		else:
 			print("No jump")
 			callback.call(false, [] as Array[Vector2])
@@ -122,6 +135,7 @@ func _spawn_player() -> void:
 	player.is_aiming_item.connect(_on_player_aiming_item)
 	player.is_placing_item.connect(_on_player_placing_item)
 	player.toy_get.connect(_on_player_toy_get)
+	player.on_map_changed.connect(_on_player_changed_map)
 	
 	$Camera2D.target = player
 
@@ -138,3 +152,17 @@ func get_spawn_point() -> Vector2:
 
 func _on_player_toy_get() -> void:
 	call_deferred("_spawn_goal")
+
+func _on_player_changed_map(on_map: int) -> void:
+	var current_map: Map = maps.get_child(on_map)
+	current_map.show_me()
+	if current_map.map_above != null:
+		current_map.map_above.hide_me(0.5)
+		if current_map.map_above.map_above != null:
+			current_map.map_above.map_above.hide_me()
+	if current_map.map_below != null:
+		current_map.map_below.show_me(0.5)
+		if current_map.map_below.map_below != null:
+			current_map.map_below.map_below.show_me(0.2)
+			if current_map.map_below.map_below.map_below != null:
+				current_map.map_below.map_below.hide_me(0.0)

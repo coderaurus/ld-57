@@ -14,6 +14,7 @@ signal is_aiming_jump
 signal is_aiming_item
 signal is_placing_item
 signal toy_get
+signal on_map_changed
 
 func _process(delta: float) -> void:
 	pass
@@ -45,7 +46,7 @@ func land(callback: Callable) -> void:
 	else:
 		var land_time := 0.5
 		var tween = get_tree().create_tween()
-		var landing_distance = 40 if facing != Vector2.UP else 4
+		var landing_distance = 40 if facing != Vector2.UP else 0
 		tween.tween_property(self, "global_position:x", landing_position.x, land_time).set_trans(Tween.TRANS_CIRC)
 		tween.parallel().tween_property(self, "global_position:y", landing_position.y + landing_distance, land_time).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
 		tween.tween_callback(callback)
@@ -75,10 +76,14 @@ func hurt() -> void:
 	
 func reset() -> void:
 	global_position = spawn_point
-	on_map = 0
+	set_to_map_layer(0)
 
 func _on_bravery_area_entered(area: Area2D) -> void:
 	if toy_acquired and area.get_parent() is Monster:
 		(area.get_parent() as Monster).flee(global_position)
 	elif toy_acquired and area is Horror:
 		(area as Horror).discover()
+
+func set_to_map_layer(level: int) -> void:
+	on_map = level
+	on_map_changed.emit(level)

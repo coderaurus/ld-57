@@ -1,6 +1,7 @@
 extends Node2D
 class_name Map
 
+
 const MONSTER = preload("res://scenes/monster.tscn")
 
 var map_above: Map
@@ -108,4 +109,28 @@ func _fill_trails() -> void:
 			var m = MONSTER.instantiate()
 			trail.add_child(m)
 			m.progress_ratio = randf()
-		
+
+func show_me(transparency: float = 1.0, is_instant := false) -> void:
+	var c: Color = Color.WHITE
+	if transparency < 1.0:
+		c = c.darkened(1-transparency)
+	c.a = transparency
+	
+	
+	if is_instant:
+		modulate = c
+	else:
+		var fade_time := 1.0
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "modulate", c, fade_time)
+
+func hide_me(transparency := 0.0, is_instant := false) -> void:
+	var c:Color = Color.BLACK
+	c.a = transparency
+	
+	if is_instant:
+		modulate = c
+	else:
+		var fade_time := 1.0
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "modulate", c, fade_time)
