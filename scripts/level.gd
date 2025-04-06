@@ -147,8 +147,8 @@ func _spawn_goal() -> void:
 	
 
 func get_spawn_point() -> Vector2:
-	$Spawn/Point.progress_ratio = randf()
-	return $Spawn/Point.global_position
+	$Maps/Map/Spawn/Point.progress_ratio = randf()
+	return $Maps/Map/Spawn/Point.global_position
 
 func _on_player_toy_get() -> void:
 	Music.song("hope")

@@ -30,5 +30,5 @@ func _on_pause_pressed() -> void:
 		%UI.hide_menu()
 
 func _on_respawn_pressed() -> void:
-	level.player.reset()
 	get_tree().paused = false
+	get_tree().reload_current_scene()
