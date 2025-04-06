@@ -45,8 +45,6 @@ func _initialize() -> void:
 				m.show_me(1.0, true)
 			1:
 				m.show_me(0.7, true)
-			2:
-				m.show_me(0.5, true)
 			_:
 				m.hide_me(0.0, true)
 		idx += 1
@@ -114,17 +112,12 @@ func _on_player_placing_item(placement:Vector2, direction:Vector2) -> void:
 
 func _place_toy() -> void: 
 	var last_map: Map = maps.get_child(maps.get_child_count()-1)
-	var ground_rect = last_map.ground.get_used_rect()
-	var spawn_point = ground_rect.size / 2
-	var spawn_position = ground_rect.position
-	spawn_point.x = randf_range(spawn_position.x + spawn_point.x - 2, spawn_position.x + spawn_point.x + 2)
-	spawn_point.x = clampi(spawn_position.x + spawn_point.x, spawn_position.x + 2, spawn_position.x + ground_rect.size.x - 2)
-	spawn_point.y = randf_range(spawn_position.y + spawn_point.y - 2, spawn_position.y + spawn_point.y + 2)
-	spawn_point.y = clampi(spawn_position.y + spawn_point.y,spawn_position.y +  2, spawn_position.y + ground_rect.size.y - 2)
+	var spawn: PathFollow2D = last_map.get_node("ToySpawn/Point")
+	spawn.progress_ratio = randf()
 	
 	var toy = TOY.instantiate()
 	last_map.objects.add_child(toy)
-	toy.global_position = spawn_point * 64
+	toy.global_position = spawn.global_position
 
 func _spawn_player() -> void:
 	player = PLAYER.instantiate()
@@ -160,6 +153,10 @@ func _on_player_toy_get() -> void:
 
 func _on_player_changed_map(on_map: int) -> void:
 	print("Player at %s " % on_map)
+	for i in maps.get_child_count():
+		if i != on_map:
+			maps.get_child(i).hide_me(0.0, true)
+	
 	var current_map: Map = maps.get_child(on_map)
 	current_map.show_me()
 	if current_map.map_above != null:
@@ -169,6 +166,4 @@ func _on_player_changed_map(on_map: int) -> void:
 	if current_map.map_below != null:
 		current_map.map_below.hide_me(0.7)
 		if current_map.map_below.map_below != null:
-			current_map.map_below.map_below.hide_me(0.5)
-			if current_map.map_below.map_below.map_below != null:
-				current_map.map_below.map_below.hide_me()
+			current_map.map_below.map_below.hide_me()
