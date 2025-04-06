@@ -2,6 +2,7 @@ extends PathFollow2D
 class_name Monster
 
 var trail: MonsterTrail
+var identity_discovered := false
 
 func _ready() -> void:
 	trail = get_parent()
@@ -16,9 +17,10 @@ func flip_trail() -> void:
 	progress_ratio = 0.0
 
 func flee(from: Vector2) -> void:
-	if $Area2D/StateMachine.current_state is EnemyStateFlee:
+	if $Area2D/StateMachine.current_state is EnemyStateFlee or identity_discovered:
 		return
 	
+	identity_discovered = true
 	var new_curve=Curve2D.new()
 	var direction = from.direction_to(global_position).normalized()
 	var local_start = trail.to_local(global_position)
@@ -29,5 +31,5 @@ func flee(from: Vector2) -> void:
 	$Area2D/StateMachine.transition_to("flee", [])
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player and not identity_discovered:
 		body.hurt()

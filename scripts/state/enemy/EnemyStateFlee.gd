@@ -7,6 +7,8 @@ var monster: Monster
 
 func enter(parameters = []):
 	monster = get_parent().monster
+	(monster.get_node("Area2D") as Area2D).set_deferred("monitorable", false)
+	(monster.get_node("Area2D") as Area2D).set_deferred("monitoring", false)
 	monster.loop = false
 	monster.progress_ratio = 0
 	print("[%s] FLEE!" % monster.name)

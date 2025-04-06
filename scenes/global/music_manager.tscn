@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dqhymmp51ppyv" path="res://audio/ost/suspense.ogg" id="3_bp2to"]
 
 [node name="MusicManager" type="AudioStreamPlayer"]
+process_mode = 3
 volume_db = -15.0
 script = ExtResource("1_mq1t3")
 ost = {

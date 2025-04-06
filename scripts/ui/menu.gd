@@ -4,6 +4,7 @@ extends Control
 func _ready() -> void:
 	$Buttons/Sound/HBoxContainer/SoundSlider.value = db_to_linear(Sound.volume_db)
 	$Buttons/Music/HBoxContainer/MusicSlider.value = db_to_linear(Music.volume_db)
+	$Buttons/Start.grab_focus()
 
 func _on_toggle_sound_pressed() -> void:
 	$Buttons/Sound/HBoxContainer/ToggleSound.text = "On" if Sound.toggle() else "Off"

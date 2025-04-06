@@ -99,6 +99,8 @@ func has_jumpable_object_at(pos: Vector2, facing: Vector2i) -> Array[Vector2]:
 	
 func initialize_objects() -> void:
 	for obj in objects.get_children():
+		var obj_coord = ground.local_to_map(to_local(obj.global_position))
+		obj.global_position = to_global(ground.map_to_local(obj_coord))
 		if obj is Jumpable:
 			var jump_path = obj.get_jump_path()
 			var jump_end_point = jump_path[jump_path.size()-1]

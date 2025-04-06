@@ -10,10 +10,13 @@ func _ready() -> void:
 	$AnimationPlayer.play("idle")
 
 func discover() -> void:
-	identity_discovered = true
-	$AnimationPlayer.play("discover")
-	Sound.sound("discover")
-	($CollisionShape2D.shape as CircleShape2D).radius = 24 # 32 original
+	if not identity_discovered:
+		print("Discovered horror")
+		identity_discovered = true
+		$AnimationPlayer.stop()
+		$AnimationPlayer.play("discover")
+		Sound.sound("discover")
+		($CollisionShape2D.shape as CircleShape2D).radius = 24 # 32 original
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -21,9 +24,11 @@ func _on_body_entered(body: Node2D) -> void:
 		if not identity_discovered:
 			body.hurt()
 		else:
-			$AnimationPlayer.play("sway")
+			if $AnimationPlayer.current_animation != "discover":
+				$AnimationPlayer.play("sway")
 
 
 func _on_body_exited(body: Node2D) -> void:
-	if body is Player and not identity_discovered:
-		$AnimationPlayer.play("idle")
+	pass
+	#if body is Player and not identity_discovered:
+		#$AnimationPlayer.play("idle")

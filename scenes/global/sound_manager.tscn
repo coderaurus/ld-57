@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bjolanmpcum10" path="res://audio/sfx/step.ogg" id="6_lk5ra"]
 
 [node name="SoundManager" type="AudioStreamPlayer"]
+process_mode = 3
 volume_db = -15.0
 script = ExtResource("1_j327r")
 sounds = {

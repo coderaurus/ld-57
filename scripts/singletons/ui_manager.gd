@@ -14,9 +14,11 @@ func hide_menu() -> void:
 
 func show_menu() -> void:
 	$Menu.show()
+	$Menu/Buttons/Start.grab_focus()
 
 func show_game_end() -> void:
 	$GameEnd.show()
+	$GameEnd/Control/PlayAgain.grab_focus()
 
 func _on_play_again_pressed() -> void:
 	get_tree().reload_current_scene()
