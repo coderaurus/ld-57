@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bv61qsfjq6emf"]
 
 [ext_resource type="Script" path="res://scripts/horror.gd" id="1_dbe7h"]
-[ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="2_wsh08"]
+[ext_resource type="Texture2D" uid="uid://7mmy4kmth11r" path="res://graphics/horror.png" id="2_m68e5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2xkv"]
 radius = 32.0
@@ -152,15 +152,15 @@ script = ExtResource("1_dbe7h")
 [node name="TrueVisage" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -6)
-texture = ExtResource("2_wsh08")
-region_enabled = true
+texture = ExtResource("2_m68e5")
+hframes = 2
+frame = 1
 region_rect = Rect2(0, 0, 50, 50)
 
 [node name="Visage" type="Sprite2D" parent="."]
-self_modulate = Color(0.122252, 0.122252, 0.122252, 1)
 position = Vector2(0, -8)
-texture = ExtResource("2_wsh08")
-region_enabled = true
+texture = ExtResource("2_m68e5")
+hframes = 2
 region_rect = Rect2(0, 0, 50, 50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

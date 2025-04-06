@@ -79,20 +79,22 @@ func is_position_empty(pos: Vector2, facing: Vector2i) -> Vector2:
 
 func has_jumpable_object_at(pos: Vector2, facing: Vector2i) -> Array[Vector2]:
 	if objects == null or objects.get_child_count() == 0:
-		print("[%s] No objects" % self.name)
+		#print("[%s] No objects" % self.name)
 		return []
-	print("[%s] Objects: %s" % [self.name, objects.get_child_count()])
+	#print("[%s] Objects: %s" % [self.name, objects.get_child_count()])
 	for c:Node2D in objects.get_children():
 		var jump_coord = ground_dual.local_to_map(pos) + facing
 		var c_coord = ground_dual.local_to_map(c.global_position)
-		if c_coord.distance_to(jump_coord) <= 1 and c is Jumpable:
-			print("[%s] Object found: %s" % [self.name, c.name])
+		# Only PLACED jumpables are valid
+		if c_coord.distance_to(jump_coord) <= 1 \
+		and c is Jumpable and (c as Jumpable).is_jumpable:
+			#print("[%s] Object found: %s" % [self.name, c.name])
 			var arr: Array[Vector2] = []
 			for v in c.get_jump_path():
 				arr.append(c.to_global(v))
 			return arr
 		
-	print("[%s] None were jumpable" % [self.name])
+	#print("[%s] None were jumpable" % [self.name])
 	return []
 	
 func initialize_objects() -> void:
@@ -100,13 +102,14 @@ func initialize_objects() -> void:
 		if obj is Jumpable:
 			var jump_path = obj.get_jump_path()
 			var jump_end_point = jump_path[jump_path.size()-1]
-			if map_above == null:
-				print("Freeing %s, no map to jump to" % obj.name)
-				obj.call_deferred("queue_free")
-			else:
-				jump_end_point = map_above.get_landing_tile(jump_end_point)
-				jump_path[jump_path.size()-1] = jump_end_point
-				obj.jump_points.points = jump_path
+			if obj.is_jumpable:
+				if map_above == null:
+					print("Freeing %s, no map to jump to" % obj.name)
+					obj.call_deferred("queue_free")
+				else:
+					jump_end_point = map_above.get_landing_tile(jump_end_point)
+					jump_path[jump_path.size()-1] = jump_end_point
+					obj.jump_points.points = jump_path
 
 
 func get_landing_tile(landing_pos: Vector2) -> Vector2:

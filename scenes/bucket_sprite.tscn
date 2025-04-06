@@ -1,11 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://dkc6be5ls11tp"]
 
-[ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="1_ffomg"]
+[ext_resource type="Texture2D" uid="uid://cijddkjlbvi1i" path="res://graphics/bucket.png" id="1_11pgp"]
 
 [node name="BucketSprite" type="Sprite2D"]
 self_modulate = Color(1, 1, 0.384314, 1)
 position = Vector2(-8, -8)
-rotation = -0.436332
-texture = ExtResource("1_ffomg")
-region_enabled = true
+texture = ExtResource("1_11pgp")
+hframes = 2
 region_rect = Rect2(30, 48, 24, 24)

@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://4xkxuohjlx88"]
+[gd_scene load_steps=19 format=3 uid="uid://4xkxuohjlx88"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s1aar"]
-[ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="2_xxsi8"]
+[ext_resource type="Texture2D" uid="uid://nam1qns2ci8e" path="res://graphics/player.png" id="2_iagh5"]
 [ext_resource type="Script" path="res://scripts/buckets.gd" id="3_cjl5m"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateMachine.gd" id="3_ed2r1"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateIdle.gd" id="4_64it4"]
 [ext_resource type="PackedScene" uid="uid://dkc6be5ls11tp" path="res://scenes/bucket_sprite.tscn" id="4_fe43m"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateMove.gd" id="5_ppec2"]
+[ext_resource type="Texture2D" uid="uid://uydhsxri64t3" path="res://graphics/toy.png" id="5_s2hhi"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateAimJump.gd" id="6_yvljt"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateJump.gd" id="7_ycgaa"]
 [ext_resource type="Script" path="res://scripts/state/player/PlayerStateLand.gd" id="8_gyn28"]
@@ -30,13 +31,12 @@ collision_mask = 13
 script = ExtResource("1_s1aar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -8)
-texture = ExtResource("2_xxsi8")
-region_enabled = true
+position = Vector2(0, -26)
+texture = ExtResource("2_iagh5")
 region_rect = Rect2(30, 48, 32, 32)
 
 [node name="Buckets" type="Node2D" parent="Sprite2D"]
-position = Vector2(-8, -16)
+position = Vector2(-3, -2)
 script = ExtResource("3_cjl5m")
 
 [node name="BucketSprite" parent="Sprite2D/Buckets" instance=ExtResource("4_fe43m")]
@@ -44,10 +44,9 @@ script = ExtResource("3_cjl5m")
 [node name="ToySprite" type="Sprite2D" parent="Sprite2D"]
 visible = false
 self_modulate = Color(1, 1, 0.384314, 1)
-position = Vector2(8, 8)
-rotation = 0.785398
-texture = ExtResource("2_xxsi8")
-region_enabled = true
+position = Vector2(5, 17)
+texture = ExtResource("5_s2hhi")
+flip_h = true
 region_rect = Rect2(30, 48, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

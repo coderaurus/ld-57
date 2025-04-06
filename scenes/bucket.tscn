@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bg3wu4qnyc2u"]
 
 [ext_resource type="Script" path="res://scripts/jumpable.gd" id="1_uamgu"]
-[ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="2_en4rw"]
+[ext_resource type="Texture2D" uid="uid://cijddkjlbvi1i" path="res://graphics/bucket.png" id="2_50iti"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5yt7b"]
 radius = 16.0
@@ -14,11 +14,10 @@ script = ExtResource("1_uamgu")
 can_be_picked = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0.658824, 0.207843, 1)
-position = Vector2(0, -16)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_en4rw")
-region_enabled = true
+position = Vector2(-1, -14)
+texture = ExtResource("2_50iti")
+hframes = 2
+frame = 1
 region_rect = Rect2(30, 48, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

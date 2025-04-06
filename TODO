@@ -1,13 +1,15 @@
 Ludum Dare 57 - Depths:
 
 ☐ Graphics
-    ☐ Player
+    ✔ Player @done(25-04-06 16:24)
+        ☐ (animations?)
     ☐ Monster
-    ☐ Horror
-    ☐ Toy
-    ☐ Bucket
-    ☐ Ground
-    ☐ Wall
+        ☐ (animations)
+    ✔ Horror @done(25-04-06 16:24)
+    ✔ Toy @done(25-04-06 16:24)
+    ✔ Bucket @done(25-04-06 17:14)
+    ✔ Ground @done(25-04-06 16:25)
+    ✔ Wall @done(25-04-06 16:25)
     ☐ Menu
         ☐ Buttons
         ☐ Sliders

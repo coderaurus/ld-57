@@ -5,6 +5,7 @@ var identity_discovered = false
 
 
 func _ready() -> void:
+	scale.x *= 1 if randf() < 0.6 else -1
 	await get_tree().create_timer(randf_range(0.5, 2.0)).timeout
 	$AnimationPlayer.play("idle")
 

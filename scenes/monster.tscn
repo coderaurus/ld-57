@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://djq4jfuidvbup"]
 
 [ext_resource type="Script" path="res://scripts/monster.gd" id="1_imtj5"]
-[ext_resource type="Texture2D" uid="uid://svxn5curuy82" path="res://icon.svg" id="1_vy78u"]
+[ext_resource type="Texture2D" uid="uid://dnmp2rt6h2bai" path="res://graphics/monster.png" id="2_4huyr"]
 [ext_resource type="Script" path="res://scripts/state/enemy/EnemyStateIdle.gd" id="3_51n3n"]
 [ext_resource type="Script" path="res://scripts/state/enemy/EnemyStateMachine.gd" id="3_k8vjr"]
 [ext_resource type="Script" path="res://scripts/state/enemy/EnemyStateMove.gd" id="4_qch7w"]
@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://scripts/state/enemy/EnemyStateFlee.gd" id="7_tbq2d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31p6k"]
-radius = 10.9759
-height = 35.6718
+radius = 15.0
+height = 48.0
 
 [node name="Monster" type="PathFollow2D"]
 rotates = false
@@ -18,24 +18,23 @@ loop = false
 script = ExtResource("1_imtj5")
 
 [node name="Area2D" type="Area2D" parent="."]
-modulate = Color(0.733333, 0, 0.180392, 1)
 rotation = 1.5708
 collision_layer = 4
 collision_mask = 2
 
 [node name="TrueVisage" type="Sprite2D" parent="Area2D"]
-visible = false
-position = Vector2(-2.22948, 0.171499)
+position = Vector2(-23, 0.171574)
 rotation = -1.5708
-texture = ExtResource("1_vy78u")
-region_enabled = true
+texture = ExtResource("2_4huyr")
+hframes = 2
+frame = 1
 region_rect = Rect2(0, 0, 40, 32)
 
 [node name="Visage" type="Sprite2D" parent="Area2D"]
-position = Vector2(-2.22948, 0.171499)
+position = Vector2(-23, 0.171574)
 rotation = -1.5708
-texture = ExtResource("1_vy78u")
-region_enabled = true
+texture = ExtResource("2_4huyr")
+hframes = 2
 region_rect = Rect2(0, 0, 40, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
