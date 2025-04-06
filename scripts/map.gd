@@ -139,7 +139,7 @@ func show_me(transparency: float = 1.0, is_instant := false) -> void:
 
 func hide_me(transparency := 0.0, is_instant := false) -> void:
 	_disable_layer_collisions()
-	var c:Color = Color.BLACK
+	var c:Color = Color.BLACK if transparency < 0.5 else Color.DIM_GRAY
 	c.a = transparency
 	
 	if is_instant:

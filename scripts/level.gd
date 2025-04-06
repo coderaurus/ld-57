@@ -157,12 +157,12 @@ func _on_player_changed_map(on_map: int) -> void:
 	var current_map: Map = maps.get_child(on_map)
 	current_map.show_me()
 	if current_map.map_above != null:
-		current_map.map_above.hide_me(0.5)
+		current_map.map_above.show_me(0.5)
 		if current_map.map_above.map_above != null:
-			current_map.map_above.map_above.hide_me()
+			current_map.map_above.map_above.show_me(0.2)
 	if current_map.map_below != null:
-		current_map.map_below.show_me(0.5)
+		current_map.map_below.hide_me(0.5)
 		if current_map.map_below.map_below != null:
-			current_map.map_below.map_below.show_me(0.2)
+			current_map.map_below.map_below.hide_me(0.2)
 			if current_map.map_below.map_below.map_below != null:
-				current_map.map_below.map_below.hide_me(0.0)
+				current_map.map_below.map_below.hide_me()
