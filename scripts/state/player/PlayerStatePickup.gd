@@ -8,13 +8,15 @@ func enter(parameters = []):
 	pass
 
 func exit():
-	pass
+	if player.animation_player.is_playing():
+		await player.animation_player.animation_finished
 
 func update(_delta: float):
 	if area.has_overlapping_bodies():
 		for b in area.get_overlapping_bodies():
 			if b is Jumpable and b.can_be_picked:
 				player.animation_player.play("pickup")
+				Sound.sound("item")
 				b.picked_up()
 				player.get_pickup()
 				transitioned.emit(self, "idle")

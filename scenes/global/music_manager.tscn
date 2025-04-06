@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx46n2fmckmo6"]
+[gd_scene load_steps=4 format=3 uid="uid://cx46n2fmckmo6"]
 
 [ext_resource type="Script" path="res://scripts/singletons/MusicManager.gd" id="1_mq1t3"]
+[ext_resource type="AudioStream" uid="uid://x4xheneo2gat" path="res://audio/ost/hope.ogg" id="2_si3jn"]
+[ext_resource type="AudioStream" uid="uid://dqhymmp51ppyv" path="res://audio/ost/suspense.ogg" id="3_bp2to"]
 
 [node name="MusicManager" type="AudioStreamPlayer"]
 volume_db = -15.0
 script = ExtResource("1_mq1t3")
+ost = {
+"hope": ExtResource("2_si3jn"),
+"suspense": ExtResource("3_bp2to")
+}

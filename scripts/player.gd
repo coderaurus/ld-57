@@ -92,3 +92,6 @@ func _on_bravery_area_entered(area: Area2D) -> void:
 func set_to_map_layer(level: int) -> void:
 	on_map = level
 	on_map_changed.emit(level)
+
+func call_step_sound() -> void:
+	Sound.sound("step")

@@ -45,4 +45,4 @@ func play_sound(from_position=0.0, volume = MUTE_DB):
 
 func on_range_changed(value):
 	volume_db = value
-	sound("click")
+	sound("jump")

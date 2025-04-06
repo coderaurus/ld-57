@@ -20,6 +20,7 @@ func on_goal_reached() -> void:
 func _on_start_pressed() -> void:
 	get_tree().paused = false
 	%UI.hide_menu()
+	Music.song("suspense")
 
 func _on_pause_pressed() -> void:
 	get_tree().paused = not get_tree().paused

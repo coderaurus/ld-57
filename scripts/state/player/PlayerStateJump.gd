@@ -7,6 +7,7 @@ func enter(parameters = []):
 	if player == null: 
 		player = get_parent().get_parent()
 	player.animation_player.play("jump")
+	Sound.sound("jump")
 	player.jump(parameters, on_jumped)
 
 func exit():

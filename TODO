@@ -1,8 +1,10 @@
 Ludum Dare 57 - Depths:
 
 ☐ Graphics
-    ✔ Player @done(25-04-06 16:24)
-        ☐ (animations?)
+    ☐ Friendo (Goal)
+        ☐ 2 frames
+    ✔ Player @done(25-04-06 22:12)
+        ✔ (animations?) @done(25-04-06 22:12)
     ✔ Monster @done(25-04-06 18:55)
         ☐ (animations)
     ✔ Horror @done(25-04-06 16:24)
@@ -19,20 +21,21 @@ Ludum Dare 57 - Depths:
     ☐ Screen Fade
 
 ☐ Music
-    ☐ Descend
-    ☐ Ascend
-    ☐ (Menu)
-    ☐ Defeat Fanfare
+    ✔ Descend @done(25-04-06 22:06)
+    ✔ Ascend @done(25-04-06 22:06)
+    ✘ (Menu) @cancelled(25-04-06 22:07)
+    ✘ Defeat Fanfare @cancelled(25-04-06 22:07)
     ☐ Victory Fanfare
 
-☐ Sound
-    ☐ Jump
-    ☐ Hurt
-    ☐ Flee
-    ☐ Discover
-    ☐ Place item
-    ☐ Pickup
-    ☐ Click
+✔ Sound @done(25-04-06 22:06)
+    ✔ Jump @done(25-04-06 22:06)
+    ✔ Hurt @done(25-04-06 22:06)
+    ✘ Flee @cancelled(25-04-06 22:06)
+    ✔ Discover @done(25-04-06 22:06)
+    ✔ Place item @done(25-04-06 22:06)
+    ✔ Pickup @done(25-04-06 22:06)
+    ✘ Click @cancelled(25-04-06 22:06)
+    ✔ Run @done(25-04-06 22:06)
 
 
 ✔ Gameplay loop @done(25-04-06 18:56)

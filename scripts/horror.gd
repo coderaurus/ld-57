@@ -12,6 +12,7 @@ func _ready() -> void:
 func discover() -> void:
 	identity_discovered = true
 	$AnimationPlayer.play("discover")
+	Sound.sound("discover")
 	($CollisionShape2D.shape as CircleShape2D).radius = 24 # 32 original
 
 

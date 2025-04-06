@@ -151,6 +151,7 @@ func get_spawn_point() -> Vector2:
 	return $Spawn/Point.global_position
 
 func _on_player_toy_get() -> void:
+	Music.song("hope")
 	call_deferred("_spawn_goal")
 
 func _on_player_changed_map(on_map: int) -> void:

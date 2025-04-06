@@ -1,7 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbh2q3htug4jc"]
+[gd_scene load_steps=7 format=3 uid="uid://bbh2q3htug4jc"]
 
 [ext_resource type="Script" path="res://scripts/singletons/SoundManager.gd" id="1_j327r"]
+[ext_resource type="AudioStream" uid="uid://dtdaj71u0bbyv" path="res://audio/sfx/discover.ogg" id="2_y2tek"]
+[ext_resource type="AudioStream" uid="uid://bw5d6sabg475k" path="res://audio/sfx/hurt.ogg" id="3_ipgwc"]
+[ext_resource type="AudioStream" uid="uid://cffp2yxihrhq7" path="res://audio/sfx/item.ogg" id="4_08blt"]
+[ext_resource type="AudioStream" uid="uid://601ekaeev3m7" path="res://audio/sfx/jump.ogg" id="5_g158i"]
+[ext_resource type="AudioStream" uid="uid://bjolanmpcum10" path="res://audio/sfx/step.ogg" id="6_lk5ra"]
 
 [node name="SoundManager" type="AudioStreamPlayer"]
 volume_db = -15.0
 script = ExtResource("1_j327r")
+sounds = {
+"discover": ExtResource("2_y2tek"),
+"hurt": ExtResource("3_ipgwc"),
+"item": ExtResource("4_08blt"),
+"jump": ExtResource("5_g158i"),
+"step": ExtResource("6_lk5ra")
+}

@@ -46,3 +46,4 @@ func _shed_visage() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(visage, "position", visage.position + Vector2.UP * 24, 0.4)
 	tween.parallel().tween_property(visage, "modulate", Color.TRANSPARENT, 0.4).set_ease(Tween.EASE_IN)
+	Sound.sound("discover")
