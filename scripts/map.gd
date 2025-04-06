@@ -126,9 +126,12 @@ func _fill_trails() -> void:
 			m.progress_ratio = randf()
 
 func show_me(transparency: float = 1.0, is_instant := false) -> void:
+	print("[%s] Showing %s | %s" % [self.name, transparency, is_instant])
+	visible = true
 	var c: Color = Color.WHITE
 	if transparency < 1.0:
 		c = c.darkened(1-transparency)
+		c = c.blend(Color.SLATE_GRAY)
 		_disable_layer_collisions()
 	else:
 		_enable_layer_collisions()
@@ -143,16 +146,24 @@ func show_me(transparency: float = 1.0, is_instant := false) -> void:
 		tween.tween_property(self, "modulate", c, fade_time)
 
 func hide_me(transparency := 0.0, is_instant := false) -> void:
+	print("[%s] Hiding %s | %s" % [self.name, transparency, is_instant])
 	_disable_layer_collisions()
+	if not visible and transparency > 0.0:
+		visible = true
 	var c:Color = Color.BLACK if transparency < 0.5 else Color.DIM_GRAY
+	c = c.blend(Color.DARK_BLUE)
 	c.a = transparency
 	
 	if is_instant:
 		modulate = c
+		if transparency == 0.0:
+			visible = false
 	else:
 		var fade_time := 1.0
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "modulate", c, fade_time)
+		if transparency == 0.0:
+			tween.tween_property(self, "visible", false, 0.0)
 
 func _enable_layer_collisions() -> void:
 	ground_dual.collision_enabled = true

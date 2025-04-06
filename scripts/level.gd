@@ -44,9 +44,9 @@ func _initialize() -> void:
 			0:
 				m.show_me(1.0, true)
 			1:
-				m.show_me(0.5, true)
+				m.show_me(0.7, true)
 			2:
-				m.show_me(0.2, true)
+				m.show_me(0.5, true)
 			_:
 				m.hide_me(0.0, true)
 		idx += 1
@@ -142,9 +142,13 @@ func _spawn_player() -> void:
 func _spawn_goal() -> void:
 	goal = GOAL.instantiate()
 	add_child(goal)
-	goal.global_position = get_spawn_point()
+	goal.global_position = get_goal_spawn_point()
 	goal.goal_reached.connect(get_parent().on_goal_reached)
 	
+
+func get_goal_spawn_point() -> Vector2:
+	$Maps/Map/GoalSpawn/Point.progress_ratio = randf()
+	return $Maps/Map/GoalSpawn/Point.global_position
 
 func get_spawn_point() -> Vector2:
 	$Maps/Map/Spawn/Point.progress_ratio = randf()
@@ -155,6 +159,7 @@ func _on_player_toy_get() -> void:
 	call_deferred("_spawn_goal")
 
 func _on_player_changed_map(on_map: int) -> void:
+	print("Player at %s " % on_map)
 	var current_map: Map = maps.get_child(on_map)
 	current_map.show_me()
 	if current_map.map_above != null:
@@ -162,8 +167,8 @@ func _on_player_changed_map(on_map: int) -> void:
 		if current_map.map_above.map_above != null:
 			current_map.map_above.map_above.show_me(0.2)
 	if current_map.map_below != null:
-		current_map.map_below.hide_me(0.5)
+		current_map.map_below.hide_me(0.7)
 		if current_map.map_below.map_below != null:
-			current_map.map_below.map_below.hide_me(0.2)
+			current_map.map_below.map_below.hide_me(0.5)
 			if current_map.map_below.map_below.map_below != null:
 				current_map.map_below.map_below.hide_me()

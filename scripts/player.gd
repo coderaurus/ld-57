@@ -36,7 +36,6 @@ func jump(jumps: Array[Vector2], callback: Callable) -> void:
 		if not is_ascending:
 			j += Vector2.UP * (10 if facing == Vector2.UP else 6)
 			#j.x /= 2 if facing.x != 0 else 1
-			print("J ", j)
 		tween.tween_property(self, "global_position:x", j.x, jump_time).set_trans(Tween.TRANS_CIRC)
 		tween.parallel().tween_property(self, "global_position:y", j.y, jump_time)\
 		.set_trans(Tween.TRANS_BACK if facing.y == 0 else Tween.TRANS_CIRC)\
