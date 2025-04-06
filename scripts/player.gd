@@ -8,6 +8,7 @@ var on_map: int = 0
 var is_ascending := false
 var landing_position: Vector2
 var toy_acquired := false
+var spawn_point: Vector2
 
 signal is_aiming_jump
 signal is_aiming_item
@@ -70,7 +71,9 @@ func hurt() -> void:
 	print("ouch")
 	$StateMachine.transition_to("hurt")
 	
-
+func reset() -> void:
+	global_position = spawn_point
+	on_map = 0
 
 func _on_bravery_area_entered(area: Area2D) -> void:
 	if toy_acquired and area.get_parent() is Monster:

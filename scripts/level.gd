@@ -111,11 +111,12 @@ func _spawn_player() -> void:
 	player = PLAYER.instantiate()
 	add_child(player)
 	player.global_position = get_spawn_point()
-	
+	player.spawn_point = player.global_position
 	player.is_aiming_jump.connect(_on_player_aiming_jump)
 	player.is_aiming_item.connect(_on_player_aiming_item)
 	player.is_placing_item.connect(_on_player_placing_item)
 	player.toy_get.connect(_on_player_toy_get)
+	
 	
 	$Camera2D.target = player
 
