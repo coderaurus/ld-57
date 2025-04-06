@@ -105,6 +105,7 @@ func _ready() -> void:
 		world_tilemap = get_parent()
 	
 	update_tileset()
+	print("[%s] Used rect: %s / %s" % [self.name, get_used_rect().size, world_tilemap.get_used_rect().size])
 
 
 ## Update the entire tileset resource from the dual grid.
@@ -132,8 +133,8 @@ func update_tileset() -> void:
 ## Update all displayed tiles from the dual grid.
 ## It will only process fully-filled tiles from the world grid.
 func _update_tiles() -> void:
-	if debug:
-		print('Updating tiles....................')
+	#if debug:
+		#print('Updating tiles....................')
 	
 	self.clear()
 	checked_cells = [true]
@@ -151,8 +152,8 @@ func update_tile(world_cell: Vector2i) -> void:
 	if freeze:
 		return
 	
-	if debug:
-		print('  Updating displayed cells around world cell ' + str(world_cell) + '...')
+	#if debug:
+		#print('  Updating displayed cells around world cell ' + str(world_cell) + '...')
 	
 	if is_isometric:
 		_update_tile_isometric(world_cell)
@@ -176,8 +177,8 @@ func _update_displayed_tile(_display_cell: Vector2i) -> void:
 			return
 		checked_cells.append(_display_cell)
 	
-	if debug:
-		print('    Checking display tile ' + str(_display_cell) + '...')
+	#if debug:
+		#print('    Checking display tile ' + str(_display_cell) + '...')
 	
 	# INFO: To get the world cells from the dual grid, we apply the opposite vectors
 	var _top_left = _display_cell - NEIGHBOURS[location.LOW_RIGHT]  # - (1,1)
@@ -264,17 +265,17 @@ func _update_displayed_tile_isometric(_display_cell: Vector2i) -> void:
 func _is_world_tile_sketched(_world_cell: Vector2i) -> bool:
 	var _atlas_coords = world_tilemap.get_cell_atlas_coords(_world_cell)
 	if _atlas_coords == full_tile:
-		if debug:
-			print('      World cell ' + str(_world_cell) + ' IS sketched with atlas coords ' + str(_atlas_coords))
+		#if debug:
+			#print('      World cell ' + str(_world_cell) + ' IS sketched with atlas coords ' + str(_atlas_coords))
 		return true
 	else:
 		# If the cell is empty, get_cell_atlas_coords() returns (-1,-1)
 		if Vector2(_atlas_coords) == Vector2(-1,-1):
-			if debug:
-				print('      World cell ' + str(_world_cell) + ' Is EMPTY')
+			#if debug:
+				#print('      World cell ' + str(_world_cell) + ' Is EMPTY')
 			return false
-		if debug:
-			print('      World cell ' + str(_world_cell) + ' Is NOT sketched with atlas coords ' + str(_atlas_coords))
+		#if debug:
+			#print('      World cell ' + str(_world_cell) + ' Is NOT sketched with atlas coords ' + str(_atlas_coords))
 		return false
 
 

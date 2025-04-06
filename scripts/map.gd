@@ -10,16 +10,27 @@ var map_below: Map
 var ground: TileMapLayer
 var ground_dual: TileMapDual
 var wall: TileMapLayer
+var wall_dual: TileMapDual
 var objects: Node2D
 var trails: Node2D
 
 func _ready() -> void:
 	ground = get_node_or_null("Ground")
-	ground_dual = ground.get_child(0)
+	ground_dual = get_node_or_null("GroundDual")
+	if ground_dual == null:
+		ground_dual = ground.get_child(0)
 	wall = get_node_or_null("Wall")
+	wall_dual = get_node_or_null("WallDual")
+	if wall_dual == null:
+		wall_dual = wall.get_child(0)
+	
+	ground.enabled = false
+	wall.enabled = false
+		
 	objects = get_node_or_null("Objects")
 	trails = get_node_or_null("Trails")
 	_fill_trails()
+	
 
 func is_position_available(pos: Vector2, facing: Vector2i) -> Vector2:
 	var pos_coord = ground.local_to_map(to_local(pos))+facing
@@ -71,7 +82,6 @@ func has_jumpable_object_at(pos: Vector2, facing: Vector2i) -> Array[Vector2]:
 		print("[%s] No objects" % self.name)
 		return []
 	print("[%s] Objects: %s" % [self.name, objects.get_child_count()])
-	var ground_dual: TileMapDual = ground.get_node("TileMapDual")
 	for c:Node2D in objects.get_children():
 		var jump_coord = ground_dual.local_to_map(pos) + facing
 		var c_coord = ground_dual.local_to_map(c.global_position)
@@ -114,6 +124,9 @@ func show_me(transparency: float = 1.0, is_instant := false) -> void:
 	var c: Color = Color.WHITE
 	if transparency < 1.0:
 		c = c.darkened(1-transparency)
+		_disable_layer_collisions()
+	else:
+		_enable_layer_collisions()
 	c.a = transparency
 	
 	
@@ -125,6 +138,7 @@ func show_me(transparency: float = 1.0, is_instant := false) -> void:
 		tween.tween_property(self, "modulate", c, fade_time)
 
 func hide_me(transparency := 0.0, is_instant := false) -> void:
+	_disable_layer_collisions()
 	var c:Color = Color.BLACK
 	c.a = transparency
 	
@@ -134,3 +148,11 @@ func hide_me(transparency := 0.0, is_instant := false) -> void:
 		var fade_time := 1.0
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "modulate", c, fade_time)
+
+func _enable_layer_collisions() -> void:
+	ground_dual.collision_enabled = true
+	wall_dual.collision_enabled = true
+
+func _disable_layer_collisions() -> void:
+	ground_dual.collision_enabled = false
+	wall_dual.collision_enabled = false

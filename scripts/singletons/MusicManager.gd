@@ -12,9 +12,9 @@ const MAX_DB = 0
 func _ready():
 	song("test")
 
-func song_playing(song):
+func song_playing(sng):
 	for key in ost.keys():
-		if stream == ost.get(key) and key == song:
+		if stream == ost.get(key) and key == sng:
 			return true
 	return false
 	
@@ -44,19 +44,19 @@ func fade():
 	stream = null
 	stop()
 
-func song(song = "", fade = false):
-	if song_playing(song):
+func song(sng = "", fade = false):
+	if song_playing(sng):
 		return
 	
 	stop()
 	var last_song = stream
-	if ost.has(song) and stream != ost.get(song):
+	if ost.has(sng) and stream != ost.get(sng):
 		if fade and stream != null:
 			while volume_db > MUTE_DB:
 				volume_db -= fade_step
 				await get_tree().create_timer(0.05).timeout
 		stop()
-		stream = ost.get(song)
+		stream = ost.get(sng)
 		if fade:
 			while volume_db < stored_db:
 				volume_db = clamp(volume_db + fade_step, MUTE_DB, stored_db)

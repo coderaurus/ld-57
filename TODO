@@ -1,0 +1,75 @@
+Ludum Dare 57 - Depths:
+
+☐ Graphics
+    ☐ Player
+    ☐ Monster
+    ☐ Horror
+    ☐ Toy
+    ☐ Bucket
+    ☐ Ground
+    ☐ Wall
+    ☐ Menu
+        ☐ Buttons
+        ☐ Sliders
+        ☐ Guides
+        ☐ Extras
+    ☐ Logo
+    ☐ Screen Fade
+
+☐ Music
+    ☐ Descend
+    ☐ Ascend
+    ☐ (Menu)
+    ☐ Defeat Fanfare
+    ☐ Victory Fanfare
+
+☐ Sound
+    ☐ Jump
+    ☐ Hurt
+    ☐ Flee
+    ☐ Discover
+    ☐ Place item
+    ☐ Pickup
+    ☐ Click
+
+
+✔ Gameplay loop @done(25-04-06 11:13)
+    ✔ Player can "lose" @done(25-04-06 09:05)
+    ✔ Player can win @done(25-04-06 08:57)
+    ✔ Player can pause the game @done(25-04-06 11:13)
+
+
+✔ Player @done(25-04-06 08:56)
+    ✔ Move @done(25-04-06 08:54)
+    ✔ Moving between layers @done(25-04-06 08:55)
+        ✔ Jump down (when at a cliff edge) @done(25-04-06 08:55)
+            ✔ Press button to initiate (see where you are landing) @done(25-04-06 08:55)
+            ✔ Press button again to Jump @done(25-04-06 08:55)
+        ✔ Plastic Buckets to jump on @done(25-04-06 08:55)
+            ✔ Bucket Inventory (max. 1-3?) @done(25-04-06 08:55)
+            ✔ Press button to aim placement @done(25-04-06 08:55)
+            ✔ Press again to place bucket @done(25-04-06 08:55)
+    ✔ Pick up items when hit @done(25-04-06 08:55)
+        ✔ Toy @done(25-04-06 08:55)
+        ✔ Bucket @done(25-04-06 08:55)
+        ☐ (Collectable?)
+
+✔ Level @done(25-04-06 11:13)
+    ✘ Cameras to show three layers @cancelled(25-04-06 08:55)
+        ✘ One you play on @cancelled(25-04-06 08:55)
+        ✘ Next one @cancelled(25-04-06 08:55)
+        ✘ One after that @cancelled(25-04-06 08:55)
+    ✔ Tilemaps @done(25-04-06 08:55)
+        ✔ Ground to walk on @done(25-04-06 08:55)
+        ✔ Wall for collision @done(25-04-06 08:55)
+    ✔ Hide above layers when going down @done(25-04-06 11:13)
+    ✔ "Monsters" @done(25-04-06 11:13)
+        ✔ Before getting Toy back, they block the path @done(25-04-06 08:56)
+            ☐ Getting toy back reveals the true form
+        ✔ Rat @done(25-04-06 08:56)
+            Return to layer above if hit?
+            With Toy - They run instead
+        ✔ Bush @done(25-04-06 08:56)
+            Cannot be passed
+            With toy - passable
+            
