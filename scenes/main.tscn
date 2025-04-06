@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bb4u3ujfosw1t"]
+[gd_scene load_steps=17 format=4 uid="uid://bb4u3ujfosw1t"]
 
 [ext_resource type="TileSet" uid="uid://cmkjy2g0pmff4" path="res://tiles/ground.tres" id="1_nsgkl"]
 [ext_resource type="Script" path="res://scripts/dual_tilemap/TileMapDual.gd" id="1_s2ymc"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://d4f4byvuv5qqh" path="res://scenes/jumpable.tscn" id="8_wyaih"]
 [ext_resource type="PackedScene" uid="uid://cqr1r73m7vx4g" path="res://scenes/monster_trail.tscn" id="9_hp4vy"]
 [ext_resource type="PackedScene" uid="uid://bv61qsfjq6emf" path="res://scenes/horror.tscn" id="9_yoaux"]
+[ext_resource type="Script" path="res://scripts/singletons/ui_manager.gd" id="11_pt314"]
+[ext_resource type="Theme" uid="uid://bqo2bo5sld5v5" path="res://themes/normal.tres" id="13_7is5g"]
 
 [sub_resource type="Curve2D" id="Curve2D_hpy1i"]
 _data = {
@@ -171,19 +173,22 @@ curve = SubResource("Curve2D_080ud")
 position = Vector2(1744, 56)
 rotation = 1.5792
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 process_mode = 3
+script = ExtResource("11_pt314")
 
-[node name="Menu" type="Control" parent="CanvasLayer"]
-layout_mode = 3
+[node name="Menu" type="Panel" parent="UI"]
+self_modulate = Color(0.266575, 0.266575, 0.266575, 0.952941)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("13_7is5g")
 script = ExtResource("4_ui60o")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu"]
+[node name="AudioSettings" type="HBoxContainer" parent="UI/Menu"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -195,50 +200,83 @@ offset_top = -69.0
 offset_right = 368.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("13_7is5g")
 
-[node name="Sound" type="VBoxContainer" parent="CanvasLayer/Menu/HBoxContainer"]
+[node name="Sound" type="VBoxContainer" parent="UI/Menu/AudioSettings"]
 layout_mode = 2
+theme = ExtResource("13_7is5g")
 
-[node name="Label" type="Label" parent="CanvasLayer/Menu/HBoxContainer/Sound"]
+[node name="Label" type="Label" parent="UI/Menu/AudioSettings/Sound"]
 layout_mode = 2
+theme = ExtResource("13_7is5g")
 text = "Sound"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/HBoxContainer/Sound"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/AudioSettings/Sound"]
 layout_mode = 2
+theme = ExtResource("13_7is5g")
 
-[node name="ToggleSound" type="Button" parent="CanvasLayer/Menu/HBoxContainer/Sound/HBoxContainer"]
+[node name="ToggleSound" type="Button" parent="UI/Menu/AudioSettings/Sound/HBoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+theme = ExtResource("13_7is5g")
 text = "On"
 
-[node name="SoundSlider" type="HSlider" parent="CanvasLayer/Menu/HBoxContainer/Sound/HBoxContainer"]
+[node name="SoundSlider" type="HSlider" parent="UI/Menu/AudioSettings/Sound/HBoxContainer"]
 custom_minimum_size = Vector2(320, 42)
 layout_mode = 2
+theme = ExtResource("13_7is5g")
 max_value = 1.0
 step = 0.05
 
-[node name="Music" type="VBoxContainer" parent="CanvasLayer/Menu/HBoxContainer"]
+[node name="Music" type="VBoxContainer" parent="UI/Menu/AudioSettings"]
 layout_mode = 2
+theme = ExtResource("13_7is5g")
 
-[node name="Label" type="Label" parent="CanvasLayer/Menu/HBoxContainer/Music"]
+[node name="Label" type="Label" parent="UI/Menu/AudioSettings/Music"]
 layout_mode = 2
+theme = ExtResource("13_7is5g")
 text = "Music"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Menu/HBoxContainer/Music"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/AudioSettings/Music"]
 layout_mode = 2
+theme = ExtResource("13_7is5g")
 
-[node name="ToggleMusic" type="Button" parent="CanvasLayer/Menu/HBoxContainer/Music/HBoxContainer"]
+[node name="ToggleMusic" type="Button" parent="UI/Menu/AudioSettings/Music/HBoxContainer"]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
+theme = ExtResource("13_7is5g")
 text = "On"
 
-[node name="MusicSlider" type="HSlider" parent="CanvasLayer/Menu/HBoxContainer/Music/HBoxContainer"]
+[node name="MusicSlider" type="HSlider" parent="UI/Menu/AudioSettings/Music/HBoxContainer"]
 custom_minimum_size = Vector2(320, 42)
 layout_mode = 2
+theme = ExtResource("13_7is5g")
 max_value = 1.0
 step = 0.05
 
-[connection signal="pressed" from="CanvasLayer/Menu/HBoxContainer/Sound/HBoxContainer/ToggleSound" to="CanvasLayer/Menu" method="_on_toggle_sound_pressed"]
-[connection signal="value_changed" from="CanvasLayer/Menu/HBoxContainer/Sound/HBoxContainer/SoundSlider" to="CanvasLayer/Menu" method="_on_sound_slider_value_changed"]
-[connection signal="pressed" from="CanvasLayer/Menu/HBoxContainer/Music/HBoxContainer/ToggleMusic" to="CanvasLayer/Menu" method="_on_toggle_music_pressed"]
-[connection signal="value_changed" from="CanvasLayer/Menu/HBoxContainer/Music/HBoxContainer/MusicSlider" to="CanvasLayer/Menu" method="_on_music_slider_value_changed"]
+[node name="Buttons" type="VBoxContainer" parent="UI/Menu"]
+layout_mode = 0
+offset_left = 268.0
+offset_top = 438.0
+offset_right = 450.0
+offset_bottom = 640.0
+theme = ExtResource("13_7is5g")
+
+[node name="Start" type="Button" parent="UI/Menu/Buttons"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+text = "Start Game"
+
+[node name="Help" type="Button" parent="UI/Menu/Buttons"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+text = "Show Help"
+
+[connection signal="pressed" from="UI/Menu/AudioSettings/Sound/HBoxContainer/ToggleSound" to="UI/Menu" method="_on_toggle_sound_pressed"]
+[connection signal="value_changed" from="UI/Menu/AudioSettings/Sound/HBoxContainer/SoundSlider" to="UI/Menu" method="_on_sound_slider_value_changed"]
+[connection signal="pressed" from="UI/Menu/AudioSettings/Music/HBoxContainer/ToggleMusic" to="UI/Menu" method="_on_toggle_music_pressed"]
+[connection signal="value_changed" from="UI/Menu/AudioSettings/Music/HBoxContainer/MusicSlider" to="UI/Menu" method="_on_music_slider_value_changed"]
+[connection signal="pressed" from="UI/Menu/Buttons/Start" to="UI/Menu" method="_on_start_pressed"]
+[connection signal="pressed" from="UI/Menu/Buttons/Help" to="UI/Menu" method="_on_help_pressed"]

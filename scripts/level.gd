@@ -14,6 +14,10 @@ var goal: Goal
 func _ready() -> void:
 	_spawn_player()
 	
+	var ground: TileMapLayer = (maps.get_child(0) as Map).ground
+	$Camera2D.limit_right = ground.get_used_rect().size.x * ground.tile_set.tile_size.x - 64
+	$Camera2D.limit_bottom = ground.get_used_rect().size.y * ground.tile_set.tile_size.y - 64
+	
 	var map_count = maps.get_child_count()
 	for i in map_count:
 		# Note: there is always more than one map layer
@@ -116,7 +120,6 @@ func _spawn_player() -> void:
 	player.is_aiming_item.connect(_on_player_aiming_item)
 	player.is_placing_item.connect(_on_player_placing_item)
 	player.toy_get.connect(_on_player_toy_get)
-	
 	
 	$Camera2D.target = player
 
