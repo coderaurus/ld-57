@@ -11,8 +11,7 @@ func _ready() -> void:
 
 func discover() -> void:
 	identity_discovered = true
-	$Visage.hide()
-	$TrueVisage.show()
+	$AnimationPlayer.play("discover")
 	($CollisionShape2D.shape as CircleShape2D).radius = 24 # 32 original
 
 

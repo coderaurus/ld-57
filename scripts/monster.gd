@@ -16,11 +16,14 @@ func flip_trail() -> void:
 	progress_ratio = 0.0
 
 func flee(from: Vector2) -> void:
+	if $Area2D/StateMachine.current_state is EnemyStateFlee:
+		return
+	
 	var new_curve=Curve2D.new()
 	var direction = from.direction_to(global_position).normalized()
 	var local_start = trail.to_local(global_position)
 	new_curve.add_point(local_start)
-	new_curve.add_point(local_start + direction * 64)
+	new_curve.add_point(local_start + direction * 96)
 	trail.curve=new_curve
 	progress_ratio = 0
 	$Area2D/StateMachine.transition_to("flee", [])
