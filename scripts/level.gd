@@ -15,8 +15,10 @@ func _ready() -> void:
 	_spawn_player()
 	
 	var ground: TileMapLayer = (maps.get_child(0) as Map).ground
-	$Camera2D.limit_right = ground.get_used_rect().size.x * ground.tile_set.tile_size.x - 64
-	$Camera2D.limit_bottom = ground.get_used_rect().size.y * ground.tile_set.tile_size.y - 64
+	$Camera2D.limit_left = ground.get_used_rect().position.x * ground.tile_set.tile_size.x
+	$Camera2D.limit_top = ground.get_used_rect().position.y * ground.tile_set.tile_size.y
+	$Camera2D.limit_right = $Camera2D.limit_left + ground.get_used_rect().size.x * ground.tile_set.tile_size.x
+	$Camera2D.limit_bottom = $Camera2D.limit_top + ground.get_used_rect().size.y  * ground.tile_set.tile_size.y
 	
 	var map_count = maps.get_child_count()
 	for i in map_count:
