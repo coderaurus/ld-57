@@ -6,6 +6,7 @@ var player: Player
 func enter(parameters = []):
 	if player == null: 
 		player = get_parent().get_parent()
+	player.animation_player.play("jump")
 	player.jump(parameters, on_jumped)
 
 func exit():

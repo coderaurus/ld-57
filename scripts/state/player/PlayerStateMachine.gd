@@ -2,6 +2,7 @@ extends StateMachine
 class_name PlayerStateMachine
 
 @export var is_debugging := false
+@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 
 func _ready():
 	for child in get_children():

@@ -40,6 +40,9 @@ func _shed_visage() -> void:
 	var true_visage: Sprite2D = monster.get_node("Area2D/TrueVisage")
 	true_visage.show()
 	visage.top_level = true
+	visage.global_position = global_position
+	visage.rotation = 0
+	visage.reparent(monster.get_parent())
 	var tween = get_tree().create_tween()
-	tween.tween_property(visage, "global_position", visage.global_position + Vector2.UP * 12, 0.5)
-	tween.parallel().tween_property(visage, "modulate", Color.TRANSPARENT, 0.5).set_ease(Tween.EASE_IN)
+	tween.tween_property(visage, "position", visage.position + Vector2.UP * 24, 0.4)
+	tween.parallel().tween_property(visage, "modulate", Color.TRANSPARENT, 0.4).set_ease(Tween.EASE_IN)

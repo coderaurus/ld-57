@@ -3,7 +3,7 @@ Ludum Dare 57 - Depths:
 ☐ Graphics
     ✔ Player @done(25-04-06 16:24)
         ☐ (animations?)
-    ☐ Monster
+    ✔ Monster @done(25-04-06 18:55)
         ☐ (animations)
     ✔ Horror @done(25-04-06 16:24)
     ✔ Toy @done(25-04-06 16:24)
@@ -35,7 +35,8 @@ Ludum Dare 57 - Depths:
     ☐ Click
 
 
-✔ Gameplay loop @done(25-04-06 11:13)
+✔ Gameplay loop @done(25-04-06 18:56)
+    ✔ Restart game @done(25-04-06 18:56)
     ✔ Player can "lose" @done(25-04-06 09:05)
     ✔ Player can win @done(25-04-06 08:57)
     ✔ Player can pause the game @done(25-04-06 11:13)

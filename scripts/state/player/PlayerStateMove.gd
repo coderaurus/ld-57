@@ -8,9 +8,10 @@ var player:Player
 func enter(parameters = []):
 	if player == null:
 		player = get_parent().get_parent()
+	player.animation_player.play("run")
 
 func exit():
-	pass
+	player.animation_player.stop()
 
 func update(_delta: float):
 	var move_input_x: float = Input.get_axis("move_left", "move_right")

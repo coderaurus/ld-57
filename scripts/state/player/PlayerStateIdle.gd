@@ -3,7 +3,7 @@ class_name PlayerStateIdle
 
 
 func enter(parameters = []):
-	pass
+	get_parent().animation_player.play("idle")
 
 func exit():
 	pass

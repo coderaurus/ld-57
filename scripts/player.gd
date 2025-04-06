@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var buckets: Buckets = $Sprite2D/Buckets
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var facing: Vector2
 var on_map: int = 0
@@ -17,7 +18,10 @@ signal toy_get
 signal on_map_changed
 
 func _process(delta: float) -> void:
-	pass
+	if facing.x < 0 and $Sprite2D.scale.x != -1:
+		$Sprite2D.scale.x = -1
+	elif facing.x > 0 and $Sprite2D.scale.x != 1:
+		$Sprite2D.scale.x = 1
 
 func aim_jump(callback: Callable) -> void:
 	is_aiming_jump.emit(facing, callback)
@@ -65,6 +69,7 @@ func get_toy() -> void:
 	$Sprite2D/ToySprite.show()
 	$Bravery.set_deferred("monitorable" , true)
 	$Bravery.monitoring = true
+
 
 func get_pickup() -> void:
 	buckets.add_bucket()

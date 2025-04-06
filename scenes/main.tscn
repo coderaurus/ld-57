@@ -212,72 +212,6 @@ grow_vertical = 2
 theme = ExtResource("13_7is5g")
 script = ExtResource("4_ui60o")
 
-[node name="AudioSettings" type="HBoxContainer" parent="UI/Menu"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -217.0
-offset_top = -69.0
-offset_right = 217.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("13_7is5g")
-
-[node name="Sound" type="VBoxContainer" parent="UI/Menu/AudioSettings"]
-layout_mode = 2
-theme = ExtResource("13_7is5g")
-
-[node name="Label" type="Label" parent="UI/Menu/AudioSettings/Sound"]
-layout_mode = 2
-theme = ExtResource("13_7is5g")
-text = "Sound"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/AudioSettings/Sound"]
-layout_mode = 2
-theme = ExtResource("13_7is5g")
-
-[node name="ToggleSound" type="Button" parent="UI/Menu/AudioSettings/Sound/HBoxContainer"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-theme = ExtResource("13_7is5g")
-text = "On"
-
-[node name="SoundSlider" type="HSlider" parent="UI/Menu/AudioSettings/Sound/HBoxContainer"]
-custom_minimum_size = Vector2(169, 42)
-layout_mode = 2
-theme = ExtResource("13_7is5g")
-max_value = 1.0
-step = 0.05
-
-[node name="Music" type="VBoxContainer" parent="UI/Menu/AudioSettings"]
-layout_mode = 2
-theme = ExtResource("13_7is5g")
-
-[node name="Label" type="Label" parent="UI/Menu/AudioSettings/Music"]
-layout_mode = 2
-theme = ExtResource("13_7is5g")
-text = "Music"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/AudioSettings/Music"]
-layout_mode = 2
-theme = ExtResource("13_7is5g")
-
-[node name="ToggleMusic" type="Button" parent="UI/Menu/AudioSettings/Music/HBoxContainer"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-theme = ExtResource("13_7is5g")
-text = "On"
-
-[node name="MusicSlider" type="HSlider" parent="UI/Menu/AudioSettings/Music/HBoxContainer"]
-custom_minimum_size = Vector2(169, 42)
-layout_mode = 2
-theme = ExtResource("13_7is5g")
-max_value = 1.0
-step = 0.05
-
 [node name="Buttons" type="VBoxContainer" parent="UI/Menu"]
 layout_mode = 0
 offset_left = 17.0
@@ -298,9 +232,105 @@ layout_mode = 2
 theme = ExtResource("13_7is5g")
 text = "Show Help"
 
-[connection signal="pressed" from="UI/Menu/AudioSettings/Sound/HBoxContainer/ToggleSound" to="UI/Menu" method="_on_toggle_sound_pressed"]
-[connection signal="value_changed" from="UI/Menu/AudioSettings/Sound/HBoxContainer/SoundSlider" to="UI/Menu" method="_on_sound_slider_value_changed"]
-[connection signal="pressed" from="UI/Menu/AudioSettings/Music/HBoxContainer/ToggleMusic" to="UI/Menu" method="_on_toggle_music_pressed"]
-[connection signal="value_changed" from="UI/Menu/AudioSettings/Music/HBoxContainer/MusicSlider" to="UI/Menu" method="_on_music_slider_value_changed"]
+[node name="Respawn" type="Button" parent="UI/Menu/Buttons"]
+custom_minimum_size = Vector2(40, 32)
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+disabled = true
+text = "Respawn"
+
+[node name="Sound" type="VBoxContainer" parent="UI/Menu/Buttons"]
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+
+[node name="Label" type="Label" parent="UI/Menu/Buttons/Sound"]
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+text = "Sound"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/Buttons/Sound"]
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+
+[node name="ToggleSound" type="Button" parent="UI/Menu/Buttons/Sound/HBoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+text = "On"
+
+[node name="SoundSlider" type="HSlider" parent="UI/Menu/Buttons/Sound/HBoxContainer"]
+custom_minimum_size = Vector2(169, 42)
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+max_value = 1.0
+step = 0.05
+
+[node name="Music" type="VBoxContainer" parent="UI/Menu/Buttons"]
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+
+[node name="Label" type="Label" parent="UI/Menu/Buttons/Music"]
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+text = "Music"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/Buttons/Music"]
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+
+[node name="ToggleMusic" type="Button" parent="UI/Menu/Buttons/Music/HBoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+text = "On"
+
+[node name="MusicSlider" type="HSlider" parent="UI/Menu/Buttons/Music/HBoxContainer"]
+custom_minimum_size = Vector2(169, 42)
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+max_value = 1.0
+step = 0.05
+
+[node name="AudioSettings" type="HBoxContainer" parent="UI/Menu/Buttons"]
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+
+[node name="GameEnd" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="VBoxContainer" parent="UI/GameEnd"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -29.0
+offset_right = 47.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/GameEnd/Control"]
+layout_mode = 2
+text = "You... WON?"
+
+[node name="PlayAgain" type="Button" parent="UI/GameEnd/Control"]
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+text = "Play again"
+
 [connection signal="pressed" from="UI/Menu/Buttons/Start" to="UI/Menu" method="_on_start_pressed"]
 [connection signal="pressed" from="UI/Menu/Buttons/Help" to="UI/Menu" method="_on_help_pressed"]
+[connection signal="pressed" from="UI/Menu/Buttons/Respawn" to="UI/Menu" method="_on_respawn_pressed"]
+[connection signal="pressed" from="UI/Menu/Buttons/Sound/HBoxContainer/ToggleSound" to="UI/Menu" method="_on_toggle_sound_pressed"]
+[connection signal="value_changed" from="UI/Menu/Buttons/Sound/HBoxContainer/SoundSlider" to="UI/Menu" method="_on_sound_slider_value_changed"]
+[connection signal="pressed" from="UI/Menu/Buttons/Music/HBoxContainer/ToggleMusic" to="UI/Menu" method="_on_toggle_music_pressed"]
+[connection signal="value_changed" from="UI/Menu/Buttons/Music/HBoxContainer/MusicSlider" to="UI/Menu" method="_on_music_slider_value_changed"]
+[connection signal="pressed" from="UI/GameEnd/Control/PlayAgain" to="UI" method="_on_play_again_pressed"]
