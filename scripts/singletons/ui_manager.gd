@@ -21,4 +21,5 @@ func show_game_end() -> void:
 	$GameEnd/Control/PlayAgain.grab_focus()
 
 func _on_play_again_pressed() -> void:
+	Music.stop()
 	get_tree().reload_current_scene()
