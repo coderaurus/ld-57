@@ -1,9 +1,22 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bqo2bo5sld5v5"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bqo2bo5sld5v5"]
+
+[ext_resource type="FontFile" uid="uid://dltqi8p61clsj" path="res://fonts/RoadPixel.ttf" id="1_4vvbo"]
+[ext_resource type="Texture2D" uid="uid://cqw45dg4w1nsy" path="res://graphics/bucket_slider.png" id="2_co8la"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ic6i7"]
 bg_color = Color(0.81412, 0.529737, 0.137531, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [resource]
-Button/colors/font_color = Color(0.334281, 0.179053, 0.021615, 1)
-Button/constants/outline_size = 0
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 6
+Button/fonts/font = ExtResource("1_4vvbo")
 Button/styles/normal = SubResource("StyleBoxFlat_ic6i7")
+HSlider/icons/grabber = ExtResource("2_co8la")
+HSlider/icons/grabber_disabled = ExtResource("2_co8la")
+HSlider/icons/grabber_highlight = ExtResource("2_co8la")
+Label/constants/outline_size = 4
+Label/fonts/font = ExtResource("1_4vvbo")

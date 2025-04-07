@@ -24,6 +24,7 @@ region_rect = Rect2(30, 48, 32, 32)
 shape = SubResource("CircleShape2D_5yt7b")
 
 [node name="JumpPoints" type="Line2D" parent="."]
+visible = false
 z_index = 100
 z_as_relative = false
 points = PackedVector2Array(0, -32, 8, -112)

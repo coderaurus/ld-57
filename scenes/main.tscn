@@ -104,7 +104,7 @@ tile_set = ExtResource("3_j1hnw")
 collision_enabled = false
 
 [node name="GroundDual" type="TileMapLayer" parent="Level/Maps/Map" node_paths=PackedStringArray("world_tilemap")]
-self_modulate = Color(0.560246, 0.868456, 0.267323, 1)
+self_modulate = Color(0.773789, 0.98414, 0.619088, 1)
 position = Vector2(-32, -32)
 tile_map_data = PackedByteArray("AAAAAAAAAAACAAEAAAAAAAEAAAACAAEAAAABAAAAAAACAAEAAAABAAEAAAACAAEAAAACAAAAAAACAAEAAAACAAEAAAADAAEAAAADAAAAAAACAAEAAAADAAEAAAABAAIAAAAAAAIAAAACAAEAAAABAAIAAAACAAEAAAAAAAMAAAACAAEAAAABAAMAAAADAAEAAAAAAAQAAAADAAEAAAABAAQAAAADAAMAAAAEAAAAAAACAAEAAAAEAAEAAAABAAIAAAAFAAAAAAADAAEAAAAFAAEAAAADAAMAAAAaAAAAAAACAAEAAAAaAAEAAAACAAEAAAAbAAAAAAACAAEAAAAbAAEAAAACAAEAAAAZAAAAAAACAAEAAAAZAAEAAAACAAEAAAAYAAAAAAACAAEAAAAYAAEAAAACAAIAAAAXAAAAAAACAAEAAAAXAAEAAAABAAIAAAAWAAAAAAACAAEAAAAWAAEAAAABAAIAAAAVAAAAAAACAAEAAAAVAAEAAAABAAIAAAAUAAAAAAACAAIAAAAUAAEAAAAAAAIAAAAcAAAAAAACAAEAAAAcAAEAAAACAAEAAAAAABAAAAACAAAAAAAAABEAAAACAAEAAAABABAAAAAAAAAAAAABABEAAAACAAAAAAAbAAIAAAACAAEAAAAcAAIAAAACAAEAAAAbAAsAAAACAAEAAAAbAAwAAAACAAEAAAAcAAsAAAACAAEAAAAcAAwAAAACAAEAAAAbAA0AAAACAAEAAAAcAA0AAAACAAEAAAAbAA4AAAACAAEAAAAcAA4AAAACAAEAAAAbAA8AAAACAAEAAAAcAA8AAAACAAEAAAAbABAAAAACAAEAAAAcABAAAAACAAEAAAAbABEAAAACAAEAAAAcABEAAAACAAEAAAAbAAkAAAACAAEAAAAbAAoAAAACAAEAAAAcAAkAAAACAAEAAAAcAAoAAAACAAEAAAAbAAgAAAACAAEAAAAcAAgAAAACAAEAAAAbAAcAAAACAAEAAAAcAAcAAAACAAEAAAAbAAYAAAACAAEAAAAcAAYAAAACAAEAAAAbAAUAAAACAAEAAAAcAAUAAAACAAEAAAAbAAQAAAACAAEAAAAcAAQAAAACAAEAAAAbAAMAAAACAAEAAAAcAAMAAAACAAEAAAAAABIAAAABAAIAAAABABIAAAABAAIAAAACABEAAAADAAAAAAACABIAAAABAAIAAAAbABIAAAABAAIAAAAcABIAAAABAAIAAAAaABEAAAACAAEAAAAaABIAAAABAAIAAAAZABEAAAABAAEAAAAZABIAAAABAAIAAAAYABEAAAADAAAAAAAYABIAAAABAAIAAAAXABEAAAABAAMAAAAXABIAAAAAAAIAAAADABEAAAADAAAAAAADABIAAAABAAIAAAAEABEAAAAAAAAAAAAEABIAAAADAAMAAAD//xEAAAACAAEAAAD//xIAAAABAAIAAAD//xAAAAACAAEAAAD//w8AAAACAAEAAAAAAA8AAAADAAIAAAD//w4AAAACAAEAAAAAAA4AAAADAAIAAAD//w0AAAACAAEAAAAAAA0AAAADAAIAAAD//wwAAAACAAEAAAAAAAwAAAADAAIAAAD//wsAAAACAAEAAAAAAAsAAAADAAIAAAD//woAAAACAAEAAAAAAAoAAAADAAIAAAD//wkAAAACAAEAAAAAAAkAAAADAAIAAAD//wgAAAACAAEAAAAAAAgAAAADAAIAAAD//wYAAAACAAEAAAD//wcAAAACAAEAAAAAAAYAAAADAAIAAAAAAAcAAAADAAIAAAD//wUAAAACAAEAAAAAAAUAAAADAAIAAAD//wQAAAACAAEAAAD//wMAAAACAAEAAAD//wIAAAACAAEAAAD//wEAAAACAAEAAAD//wAAAAACAAEAAAD/////AAACAAEAAAAAAP//AAACAAEAAAABAP//AAACAAEAAAACAP//AAACAAEAAAADAP//AAACAAEAAAAEAP//AAACAAEAAAAFAP//AAACAAEAAAAGAP//AAACAAEAAAAGAAAAAAABAAIAAAAHAP//AAACAAEAAAAHAAAAAAABAAIAAAAIAP//AAACAAEAAAAIAAAAAAABAAIAAAAJAP//AAACAAEAAAAJAAAAAAABAAIAAAAKAP//AAACAAEAAAAKAAAAAAACAAIAAAALAP//AAACAAEAAAALAAAAAAACAAEAAAAMAP//AAACAAEAAAAMAAAAAAACAAEAAAANAP//AAACAAEAAAANAAAAAAACAAEAAAAOAP//AAACAAEAAAAOAAAAAAADAAEAAAAPAP//AAACAAEAAAAPAAAAAAABAAIAAAAQAP//AAADAAIAAAAQAAAAAAADAAMAAAATAP//AAABAAAAAAATAAAAAAAAAAIAAAAUAP//AAACAAEAAAAVAP//AAACAAEAAAAWAP//AAACAAEAAAAXAP//AAACAAEAAAAYAP//AAACAAEAAAAZAP//AAACAAEAAAAaAP//AAACAAEAAAAbAP//AAACAAEAAAAcAP//AAACAAEAAAAdAP//AAADAAIAAAAdAAAAAAADAAIAAAAdAAEAAAADAAIAAAAdAAIAAAADAAIAAAAdAAMAAAADAAIAAAAdAAQAAAADAAIAAAAdAAUAAAADAAIAAAAdAAYAAAADAAIAAAAdAAcAAAADAAIAAAAdAAgAAAADAAIAAAAdAAkAAAADAAIAAAAdAAoAAAADAAIAAAAdAAsAAAADAAIAAAAdAAwAAAADAAIAAAAdAA0AAAADAAIAAAAdAA4AAAADAAIAAAAdAA8AAAADAAIAAAAdABAAAAADAAIAAAAdABEAAAADAAIAAAAdABIAAAADAAMAAAAZAAIAAAACAAIAAAAaAAIAAAACAAEAAAAaAAMAAAACAAIAAAACAAIAAAADAAIAAAACAAMAAAADAAMAAAAYAAIAAAAAAAIAAAD+//7/AAABAAMAAAD+////AAABAAAAAAD///7/AAADAAAAAAAAAP7/AAADAAAAAAABAP7/AAADAAAAAAACAP7/AAADAAAAAAADAP7/AAADAAAAAAAEAP7/AAADAAAAAAAFAP7/AAADAAAAAAAGAP7/AAADAAAAAAAHAP7/AAADAAAAAAAIAP7/AAADAAAAAAAJAP7/AAADAAAAAAAKAP7/AAADAAAAAAALAP7/AAADAAAAAAAMAP7/AAADAAAAAAANAP7/AAADAAAAAAAOAP7/AAADAAAAAAAPAP7/AAADAAAAAAAQAP7/AAAAAAAAAAATAP7/AAABAAMAAAAUAP7/AAADAAAAAAAVAP7/AAADAAAAAAAWAP7/AAADAAAAAAAXAP7/AAADAAAAAAAYAP7/AAADAAAAAAAZAP7/AAADAAAAAAAaAP7/AAADAAAAAAAbAP7/AAADAAAAAAAcAP7/AAADAAAAAAAdAP7/AAAAAAAAAAD+/wAAAAABAAAAAAD+/wEAAAABAAAAAAD+/wIAAAABAAAAAAD+/wMAAAABAAAAAAD+/wQAAAABAAAAAAD+/wUAAAABAAAAAAD+/wYAAAABAAAAAAD+/wcAAAABAAAAAAD+/wgAAAABAAAAAAD+/wkAAAABAAAAAAD+/woAAAABAAAAAAD+/wsAAAABAAAAAAD+/wwAAAABAAAAAAD+/w0AAAABAAAAAAD+/w4AAAABAAAAAAD+/w8AAAABAAAAAAD+/xAAAAABAAAAAAD+/xEAAAABAAAAAAD+/xIAAAAAAAIAAAAZAAMAAAAAAAIAAAAaAAQAAAABAAAAAAAaAAUAAAABAAAAAAAaAAYAAAABAAAAAAAaAAcAAAABAAAAAAAaAAgAAAABAAAAAAAaAAkAAAABAAAAAAAaAAoAAAABAAAAAAAaAAsAAAABAAAAAAAaAAwAAAABAAAAAAAaAA0AAAABAAAAAAAaAA4AAAABAAAAAAAaAA8AAAABAAAAAAAaABAAAAABAAEAAAAZABAAAAABAAMAAAAKAAEAAAAAAAIAAAALAAEAAAABAAIAAAAMAAEAAAABAAIAAAANAAEAAAABAAIAAAAOAAEAAAADAAMAAAA=")
 tile_set = ExtResource("1_nsgkl")
@@ -399,10 +399,10 @@ script = ExtResource("4_ui60o")
 
 [node name="Buttons" type="VBoxContainer" parent="UI/Menu"]
 layout_mode = 0
-offset_left = 17.0
-offset_top = 58.0
-offset_right = 156.0
-offset_bottom = 260.0
+offset_left = 12.0
+offset_top = 29.0
+offset_right = 273.0
+offset_bottom = 331.0
 theme = ExtResource("13_7is5g")
 
 [node name="Start" type="Button" parent="UI/Menu/Buttons"]
@@ -412,6 +412,7 @@ theme = ExtResource("13_7is5g")
 text = "Start Game"
 
 [node name="Help" type="Button" parent="UI/Menu/Buttons"]
+visible = false
 custom_minimum_size = Vector2(40, 32)
 layout_mode = 2
 theme = ExtResource("13_7is5g")
@@ -429,22 +430,24 @@ layout_mode = 2
 theme = ExtResource("13_7is5g")
 
 [node name="Label" type="Label" parent="UI/Menu/Buttons/Sound"]
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 theme = ExtResource("13_7is5g")
 text = "Sound"
+vertical_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/Buttons/Sound"]
 layout_mode = 2
 theme = ExtResource("13_7is5g")
 
 [node name="ToggleSound" type="Button" parent="UI/Menu/Buttons/Sound/HBoxContainer"]
-custom_minimum_size = Vector2(42, 42)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme = ExtResource("13_7is5g")
 text = "On"
 
 [node name="SoundSlider" type="HSlider" parent="UI/Menu/Buttons/Sound/HBoxContainer"]
-custom_minimum_size = Vector2(169, 42)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme = ExtResource("13_7is5g")
 max_value = 1.0
@@ -455,22 +458,24 @@ layout_mode = 2
 theme = ExtResource("13_7is5g")
 
 [node name="Label" type="Label" parent="UI/Menu/Buttons/Music"]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme = ExtResource("13_7is5g")
 text = "Music"
+vertical_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/Buttons/Music"]
 layout_mode = 2
 theme = ExtResource("13_7is5g")
 
 [node name="ToggleMusic" type="Button" parent="UI/Menu/Buttons/Music/HBoxContainer"]
-custom_minimum_size = Vector2(42, 42)
+custom_minimum_size = Vector2(50, 42)
 layout_mode = 2
 theme = ExtResource("13_7is5g")
 text = "On"
 
 [node name="MusicSlider" type="HSlider" parent="UI/Menu/Buttons/Music/HBoxContainer"]
-custom_minimum_size = Vector2(169, 42)
+custom_minimum_size = Vector2(180, 42)
 layout_mode = 2
 theme = ExtResource("13_7is5g")
 max_value = 1.0
@@ -479,6 +484,74 @@ step = 0.05
 [node name="AudioSettings" type="HBoxContainer" parent="UI/Menu/Buttons"]
 layout_mode = 2
 theme = ExtResource("13_7is5g")
+
+[node name="Help" type="Panel" parent="UI/Menu"]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 7.0
+offset_right = 633.0
+offset_bottom = 352.0
+
+[node name="Label" type="Label" parent="UI/Menu/Help"]
+modulate = Color(0.815686, 0.529412, 0.137255, 1)
+layout_mode = 2
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 211.0
+offset_bottom = 37.0
+text = "Controls:"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu/Help"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 41.0
+offset_right = 296.0
+offset_bottom = 157.0
+
+[node name="Label2" type="Label" parent="UI/Menu/Help/VBoxContainer"]
+layout_mode = 2
+text = "move - arrows or wasd"
+
+[node name="Label3" type="Label" parent="UI/Menu/Help/VBoxContainer"]
+layout_mode = 2
+text = "run - shift"
+
+[node name="Label4" type="Label" parent="UI/Menu/Help/VBoxContainer"]
+layout_mode = 2
+text = "interact - f"
+
+[node name="Label6" type="Label" parent="UI/Menu/Help/VBoxContainer"]
+modulate = Color(0.505344, 0.505344, 0.505344, 1)
+layout_mode = 2
+text = "     i.e. picking and placing items"
+
+[node name="Label5" type="Label" parent="UI/Menu/Help/VBoxContainer"]
+layout_mode = 2
+text = "jump - space"
+
+[node name="Label7" type="Label" parent="UI/Menu/Help/VBoxContainer"]
+layout_mode = 2
+text = "pause - p or esc"
+
+[node name="Label2" type="Label" parent="UI/Menu/Help"]
+modulate = Color(0.815686, 0.529412, 0.137255, 1)
+layout_mode = 2
+offset_left = 21.0
+offset_top = 175.0
+offset_right = 284.0
+offset_bottom = 191.0
+text = "about jumping and placing items:"
+
+[node name="Label3" type="Label" parent="UI/Menu/Help"]
+layout_mode = 2
+offset_left = 45.0
+offset_top = 195.0
+offset_right = 328.0
+offset_bottom = 325.0
+text = "jumping and placing items are grid based and need to be aimed. your last movement acts aim direction.
+
+sadly, there is no clear indicator where you are facing nor is there more robust system in place."
+autowrap_mode = 2
 
 [node name="GameEnd" type="Panel" parent="UI"]
 visible = false
@@ -495,18 +568,30 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -47.5
-offset_top = -29.0
-offset_right = 47.5
-offset_bottom = 29.0
+offset_left = -105.0
+offset_top = -62.0
+offset_right = 105.0
+offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="UI/GameEnd/Control"]
 layout_mode = 2
-text = "You... WON?"
+theme = ExtResource("13_7is5g")
+theme_override_font_sizes/font_size = 24
+text = "Congratulations!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/GameEnd/Control"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("13_7is5g")
+text = "You found your buddyfant
+and got out of the gorge!"
+horizontal_alignment = 1
 
 [node name="PlayAgain" type="Button" parent="UI/GameEnd/Control"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme = ExtResource("13_7is5g")
 text = "Play again"

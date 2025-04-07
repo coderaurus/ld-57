@@ -23,6 +23,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="TrueVisage" type="Sprite2D" parent="Area2D"]
+visible = false
 position = Vector2(-23, 0.171574)
 rotation = -1.5708
 texture = ExtResource("2_4huyr")
