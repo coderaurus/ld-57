@@ -296,6 +296,7 @@ position = Vector2(1188, 877)
 
 [node name="Jumpable" parent="Level/Maps/Map4/Objects" instance=ExtResource("8_wyaih")]
 position = Vector2(484, 488)
+is_jumpable = true
 
 [node name="Trails" type="Node2D" parent="Level/Maps/Map4"]
 
