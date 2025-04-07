@@ -183,6 +183,13 @@ is_jumpable = true
 [node name="JumpPoints" parent="Level/Maps/Map2/Objects/Jumpable2" index="2"]
 points = PackedVector2Array(0, -32, -85, -35)
 
+[node name="Jumpable3" parent="Level/Maps/Map2/Objects" instance=ExtResource("8_wyaih")]
+position = Vector2(1498, 104)
+is_jumpable = true
+
+[node name="JumpPoints" parent="Level/Maps/Map2/Objects/Jumpable3" index="2"]
+points = PackedVector2Array(0, -32, 4, -82)
+
 [node name="Trails" type="Node2D" parent="Level/Maps/Map2"]
 
 [node name="Map3" type="CanvasGroup" parent="Level/Maps"]
@@ -607,4 +614,5 @@ text = "Play again"
 [connection signal="pressed" from="UI/GameEnd/Control/PlayAgain" to="UI" method="_on_play_again_pressed"]
 
 [editable path="Level/Maps/Map2/Objects/Jumpable2"]
+[editable path="Level/Maps/Map2/Objects/Jumpable3"]
 [editable path="Level/Maps/Map3/Objects/Jumpable"]
